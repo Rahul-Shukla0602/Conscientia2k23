@@ -1,0 +1,60 @@
+/* ImageSlider.css */
+
+.slide {
+  transform: scale(0.7);
+  transition: transform 300ms;
+  opacity: 0.5;
+}
+
+.slideWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.prevArrow {
+  position: absolute;
+  top: 40%;
+  left: 60px;
+  z-index: 100;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.nextArrow {
+  position: absolute;
+  top: 40%;
+  right: 60px;
+  z-index: 100;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .slideWrapper {
+    align-items: center;
+  }
+
+  .prevArrow,
+  .nextArrow {
+    display: none;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .h-auto {
+    height: auto;
+  }
+  img{
+    width: 250px;
+    height: 300px;
+  }
+  /* .aspect-square {
+    aspect-ratio: 1/1;
+  } */
+  
+  .rounded-3xl {
+    border-radius: 1rem;
+  }
+}

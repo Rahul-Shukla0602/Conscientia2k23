@@ -1,0 +1,18 @@
+
+@media only screen and (max-width: 550px) {
+    .mainbody{
+        display: none;
+    }
+    .maincontent{
+        display: flex;
+    }
+  }
+
+@media only screen and (min-width: 651px){
+    .maincontent{
+        display: none;
+    }
+    .mainbody{
+        display: flex;
+    }
+}
