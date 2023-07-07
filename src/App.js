@@ -12,6 +12,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import ForgotPassword from "./pages/ForgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import About from "./pages/About";
+import Error from './pages/Error'
 
 function App() {
   const [preloader, setPreloader] = useState("visible");
@@ -39,6 +40,7 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
               <Route path="/update-password/:id" element={<UpdatePassword/>}></Route>
               <Route path="/about" element={<About/>}></Route>
+              <Route path="*" element={<Error/>}></Route>
             </Routes>
           </div>
         </div>
