@@ -164,7 +164,7 @@ function ParllaxSection() {
 
 
   return (
-    <div className="topbody overflow-x-hidden relative" ref={ref}>
+    <div className="overflow-x-hidden relative" ref={ref}>
 
       <section className='mainbody relative justify-center items-center h-screen text-center'>
         <img className='absolute bottom-0 h-full left-0 w-full pointer-events-none' src={image1} id="bgp" alt=''/>
@@ -183,18 +183,18 @@ function ParllaxSection() {
       </section>
 
       <div className=' absolute z-40 h-screen w-screen top-[0] right-[0] flex items-center justify-center'>
-        <img className='w-3/5' src={logoweb} alt=''/>
+        <img className='w-[370px] lg:w-3/5' src={logoweb} alt=''/>
       </div>
       <section className="z-40 relative bg-richblack-800 text-base text-white font-light p-16 mx-auto ">
       <p
-      style={{
-            background: 'linear-gradient(117.95deg, #833AB4 -2.4%, #FD1D1D 52.25%, #FCB045 106.89%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            textFillColor: 'transparent' 
-        }}
-      className='text-center font-semibold lg:text-6xl text-2xl pb-10'
-      >SATELLITE INOVATIONS</p>
+      // style={{
+      //       background: 'linear-gradient(117.95deg, #833AB4 -2.4%, #FD1D1D 52.25%, #FCB045 106.89%)',
+      //       WebkitBackgroundClip: 'text',
+      //       WebkitTextFillColor: 'transparent',
+      //       textFillColor: 'transparent' 
+      //   }}
+      className='mb-10 text-center font-semibold lg:text-6xl text-2xl pb-10'
+      >CONSCIENTIA 2K22</p>
       <ImageSlider images={IMAGES} slidesToShow={3} autoplay={true} />
       </section>
     </div>

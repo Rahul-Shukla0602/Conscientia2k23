@@ -19,10 +19,10 @@ export const NavbarLinks = [
         title: "Accomodation",
         path: "/accomodation",
     },
-    {
-        title: "Contact Us",
-        path: "/contactus",
-    },
+    // {
+    //     title: "Contact Us",
+    //     path: "/contactus",
+    // },
 
     {
         title: "About",

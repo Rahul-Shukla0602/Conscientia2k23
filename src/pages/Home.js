@@ -13,10 +13,10 @@ const Home = () => {
 
       <ParllaxSection/>
 
-      <div className='lg:mt-[100px]'>
+      <div className='lg:mt-[80px]'>
         <Merchandise/>
       </div>
-      <section className="z-40 relative bg-slate-900 text-base text-white font-light p-4">
+      <section className="z-40 relative bg-slate-900 text-base text-white font-light p-4 mb-8 lg:mb-10">
         <p
         style={{
             background: 'linear-gradient(117.95deg, #833AB4 -2.4%, #FD1D1D 52.25%, #FCB045 106.89%)',
@@ -24,7 +24,7 @@ const Home = () => {
             WebkitTextFillColor: 'transparent',
             textFillColor: 'transparent' 
         }}
-        className=' text-center text-3xl lg:text-6xl pb-6'
+        className=' text-center text-3xl lg:text-6xl pb-10 lg:pb-20 font-bold'
         >SPONSERS</p>
         <Sponsers/>
       </section>

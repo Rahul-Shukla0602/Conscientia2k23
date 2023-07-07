@@ -16,3 +16,30 @@
     position: relative;
     z-index: 1;
   }
+  .navbar-container {
+    position: relative; 
+    z-index: 50;
+  }
+  
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+  
+  /* Rest of your existing CSS for the Navbar component */
+  
+
+  @media (max-width: 480px) {
+    .content-container {
+      padding-top: -150px;
+    }
+    /* .app-container {
+      padding-top: -100px;
+    } */
+  
+  }

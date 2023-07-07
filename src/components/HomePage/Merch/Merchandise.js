@@ -1,9 +1,10 @@
 import React from 'react';
-import merch1 from '../../../assets/merchImage/merch.png';
+// import merch1 from '../../../assets/merchImage/merch.png';
+import OfficialMerch from '../../../assets/OfficialMerch.mp4'
 
 const Merchandise = () => {
   return (
-    <div className="bg-black flex flex-col items-center lg:gap-24 px-4 lg:px-0">
+    <div className="bg-black flex flex-col items-center lg:gap-24 px-4 lg:px-0 pb-20 lg:pb-[300px]">
       <h1
         style={{
           background: 'linear-gradient(117.95deg, #833AB4 -2.4%, #FD1D1D 52.25%, #FCB045 106.89%)',
@@ -11,12 +12,22 @@ const Merchandise = () => {
           WebkitTextFillColor: 'transparent',
           textFillColor: 'transparent',
         }}
-        className="text-4xl lg:text-6xl font-semibold text-center mt-8 lg:mt-0"
+        className="text-4xl lg:text-6xl font-semibold text-center mt-8"
       >
         MERCHANDISE
       </h1>
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-40 my-8">
-        <img src={merch1} alt="first" className="w-[300px] h-[400px]" />
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-40">
+        {/* <img src={merch1} alt="first" className="w-[300px] h-[400px]" /> */}
+        <div className='mt-[38px] w-[300px] lg:w-[400px] lg:h-[515px] custom-drop-shadow relative'>
+                    <video
+                        controls width=""
+                        muted
+                        loop
+                        autoPlay
+                    >
+                    <source src={OfficialMerch} type='video/ogg'/>   
+                    </video>
+                </div>
         <div className="lg:w-[686px] text-richblack-100 flex flex-col gap-5 text-center lg:text-left">
           <p className=' text-start'>
             Introducing the must-have addition to your wardrobe - the official Conscientia merchandise T-shirt! This

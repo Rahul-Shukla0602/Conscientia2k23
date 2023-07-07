@@ -13,6 +13,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import About from "./pages/About";
 import Error from './pages/Error'
+import Sponsers  from "./pages/Sponsers";
+import ContactUs  from "./pages/ContactUs";
 
 function App() {
   const [preloader, setPreloader] = useState("visible");
@@ -31,7 +33,10 @@ function App() {
         <div className="app-container gap-4 max-w-screen min-h-screen relative">
           <Background />
           <div className="content-container">
+          <div className="navbar-container">
             <Navbar />
+          </div>
+
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/signup" element={<Signup/>}></Route>
@@ -40,6 +45,8 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
               <Route path="/update-password/:id" element={<UpdatePassword/>}></Route>
               <Route path="/about" element={<About/>}></Route>
+              <Route path="/sponsor" element={<Sponsers/>}></Route>
+              <Route path="/contactus" element={<ContactUs/>}></Route>
               <Route path="*" element={<Error/>}></Route>
             </Routes>
           </div>

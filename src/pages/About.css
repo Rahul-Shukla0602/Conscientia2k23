@@ -1,0 +1,44 @@
+/* Default styles */
+
+.section {
+    padding: 50px;
+  }
+  
+  .text-4xl {
+    font-size: 32px;
+  }
+  
+  .content {
+    font-size: 16px;
+  }
+  
+  /* Media queries */
+  
+  @media (max-width: 768px) {
+    .section {
+      padding: 40px;
+    }
+  
+    .text-4xl {
+      font-size: 28px;
+    }
+  
+    .content {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .section {
+      padding: 30px;
+    }
+  
+    .text-4xl {
+      font-size: 24px;
+    }
+  
+    .content {
+      font-size: 12px;
+    }
+  }
+  

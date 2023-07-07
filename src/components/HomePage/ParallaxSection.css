@@ -1,5 +1,5 @@
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 350px) {
     .mainbody{
         display: none;
     }
@@ -8,11 +8,20 @@
     }
   }
 
-@media only screen and (min-width: 651px){
+@media only screen and (min-width: 551px){
     .maincontent{
         display: none;
     }
     .mainbody{
         display: flex;
     }
-}
+} 
+
+ @media only screen and (max-width: 600px) {
+    .maincontent{
+        display: flex;
+    }
+    .mainbody{
+        display: none;
+    }
+  }

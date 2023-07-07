@@ -78,7 +78,7 @@ function Sponsors() {
       >
         {Sponsers.map((img, i) => {
           return (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={i} className='bg-richblack-50'>
               <div className="card_image">
                 <img className='card_image_src' src={img.logo} alt={img.alt} />
               </div>
@@ -90,97 +90,7 @@ function Sponsors() {
             </SwiperSlide>
           );
         })}
-        {/* <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" alt="" />
-        </SwiperSlide> */}
       </Swiper>
-      {/* <section className='swiper mySwiper'>
-        <div className="swiper-wrapper">
-          <div className="card swiper-slide">
-            <div className="card_image">
-              <img className='card_image_src' src="https://picsum.photos/200" alt="user1" />
-            </div>
-            <div className="card_content">
-              <span className="card_title">
-                Web Designer 1
-              </span>
-              <span className="card_name">Rose Bush 1</span>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quasi natus velit earum aliquam asperiores.</p>
-              <button className='card_btn'>View More</button>
-            </div>
-          </div>
-          <div className="card swiper-slide">
-            <div className="card_image">
-              <img className='card_image_src' src="https://picsum.photos/200" alt="user1" />
-            </div>
-            <div className="card_content">
-              <span className="card_title">
-                Web Designer 2
-              </span>
-              <span className="card_name">Rose Bush</span>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quasi natus velit earum aliquam asperiores.</p>
-              <button className='card_btn'>View More</button>
-            </div>
-          </div>
-          <div className="card swiper-slide">
-            <div className="card_image">
-              <img className='card_image_src' src="https://picsum.photos/200" alt="user1" />
-            </div>
-            <div className="card_content">
-              <span className="card_title">
-                Web Designer 3
-              </span>
-              <span className="card_name">Rose Bush</span>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quasi natus velit earum aliquam asperiores.</p>
-              <button className='card_btn'>View More</button>
-            </div>
-          </div>
-          <div className="card swiper-slide">
-            <div className="card_image">
-              <img className='card_image_src' src="https://picsum.photos/200" alt="user1" />
-            </div>
-            <div className="card_content">
-              <span className="card_title">
-                Web Designer 4
-              </span>
-              <span className="card_name">Rose Bush</span>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quasi natus velit earum aliquam asperiores.</p>
-              <button className='card_btn'>View More</button>
-            </div>
-          </div>
-          <div className="card swiper-slide">
-            <div className="card_image">
-              <img className='card_image_src' src="https://picsum.photos/200" alt="user1" />
-            </div>
-            <div className="card_content">
-              <span className="card_title">
-                Web Designer 5
-              </span>
-              <span className="card_name">Rose Bush</span>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quasi natus velit earum aliquam asperiores.</p>
-              <button className='card_btn'>View More</button>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </div>
   )
 }

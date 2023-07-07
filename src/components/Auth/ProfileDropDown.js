@@ -22,7 +22,7 @@ const ProfileDropDown = () => {
       </div>
       {
         Open && (
-          <div className='flex flex-col text-richblack-100 absolute right-10 top-16  divide-y-[1px] 
+          <div className='flex flex-col text-richblack-100 absolute right-8 lg:-right-[30px] top-10  divide-y-[1px] 
           divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800'
           ref={myref}
           onClick={(e)=>e.stopPropagation()}

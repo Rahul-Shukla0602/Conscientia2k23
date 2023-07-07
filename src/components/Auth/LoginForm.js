@@ -54,7 +54,7 @@ const LoginForm = () => {
                 style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                 }}
-                className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'
+                className='w-[300px] lg:w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'
             />
         </label>
 
@@ -70,11 +70,11 @@ const LoginForm = () => {
                 style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                 }}
-                className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'
+                className='w-[300px] lg:w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'
             />
             <span
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute z-[10] cursor-pointer left-[390px] top-[45px]"
+            className="absolute z-[10] cursor-pointer left-[250px] lg:left-[390px] top-[45px]"
             >
             {showPassword ? (
               <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -83,7 +83,7 @@ const LoginForm = () => {
             )}
           </span>
           <Link to="/forgot-password">
-          <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
+          <p className="mt-1 ml-auto max-w-max text-xs text-blue-100 transform -translate-x-[50px]">
             Forgot Password
           </p>
         </Link>
@@ -91,7 +91,7 @@ const LoginForm = () => {
 
         <button
         type='submit'
-        className=' bg-yellow-100 rounded-xl py-3 mt-1'
+        className='w-[300px] lg:w-full bg-yellow-100 rounded-xl py-3 mt-1'
         >
             Sign in
         </button>

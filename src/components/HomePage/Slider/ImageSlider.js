@@ -81,7 +81,7 @@ const ImageSlider = ({
             <img
               src={image.src}
               alt={image.alt}
-              className=' aspect-square w-[400px] h-[400px] rounded-3xl'
+              className=' aspect-square w-[350px] h-[340px] lg:w-[640px] lg:h-[500px] rounded-3xl'
             />
           )}
         </div>
