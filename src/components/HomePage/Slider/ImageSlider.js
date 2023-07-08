@@ -57,7 +57,7 @@ const ImageSlider = ({
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 620,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -81,7 +81,7 @@ const ImageSlider = ({
             <img
               src={image.src}
               alt={image.alt}
-              className=' aspect-square w-[350px] h-[340px] lg:w-[640px] lg:h-[500px] rounded-3xl'
+              className='w-[300px] h-[300px] lg:w-[600px] lg:h-[360px] rounded-3xl'
             />
           )}
         </div>
