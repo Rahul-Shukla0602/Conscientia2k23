@@ -31,7 +31,7 @@ const Navbar = () => {
         onClick={() => setOpen(false)}
         to='/' className='mr-4'>
           <img src={logo} alt='logo'
-            className=' w-16 lg:w-24 h-12 lg:h-20  transform translate-x-[30px] lg:-translate-x-[100px]'
+            className=' w-16 lg:w-24 h-12 lg:h-20  transform translate-x-[30px] lg:-translate-x-[70px]'
           />
         </Link>
 
@@ -84,7 +84,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className='flex flex-col lg:flex-row items-center space-x-4 gap-2  lg:pl-[800px] absolute'>
+          <div className='flex flex-col lg:flex-row items-center space-x-4 gap-2  lg:pl-[700px] absolute'>
           {!token && (
             <Link
             onClick={() => setOpen(false)}

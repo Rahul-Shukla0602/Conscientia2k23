@@ -31,8 +31,8 @@
 .card_image{
     width: 15em;
     height: 15em;
-    border-radius: 50%;
-    border: 5px solid #9176ff;
+    /* border-radius: 50%; */
+    /* border: 5px solid #9176ff; */
     padding: 3px;
     margin-bottom: 2em;
 
@@ -41,8 +41,8 @@
 .card_image img{
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+    /* border-radius: 50%; */
+    object-fit:  contain;
 }
 
 .card_content{
