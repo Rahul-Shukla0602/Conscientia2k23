@@ -21,7 +21,7 @@ const otpSchema = new mongoose.Schema({
 // a function for sending email for varification
 async function sendVarificationEmail(email,otp){
     try{
-        const mailResponse = await mailSender(email,"Varification Email from Consientia",otpTemplate(otp));
+        const mailResponse = await mailSender(email,"Verification Email from Conscientia",otpTemplate(otp));
         console.log("Email send successfully: ",mailResponse.response);
     } catch(error){
         console.log("Error while sending email: ",error);
