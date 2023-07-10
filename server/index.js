@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"https://conscientia2k23.vercel.app",
+		origin:"https://www.conscientia.co.in",
 		credentials:true,
 	})
 )
