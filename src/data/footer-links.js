@@ -24,11 +24,11 @@ export const FooterLinks = [
         title: 'Accomodation',
         path: '/accomodation'
     },
-    {
-        id:6,
-        title: 'Contact Us',
-        path: '/contactus'
-    },
+    // {
+    //     id:6,
+    //     title: 'Contact Us',
+    //     path: '/contactus'
+    // },
     {
         id:7,
         title: 'About',
