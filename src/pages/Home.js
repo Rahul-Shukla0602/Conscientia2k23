@@ -25,7 +25,7 @@ const Home = () => {
             textFillColor: 'transparent' 
         }}
         className=' text-center text-3xl lg:text-6xl pb-10 lg:pb-20 font-bold'
-        >SPONSORS</p>
+        >PREVIOUS SPONSORS</p>
         <Sponsers/>
       </section>
       

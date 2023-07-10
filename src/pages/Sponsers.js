@@ -7,7 +7,7 @@ function Sponsors() {
   return (
     <div>
       <section className="z-40 relative bg-slate-900 text-base text-white font-light pt-32">
-        <span className='block w-screen text-center font-bold text-4xl'>SPONSORS</span>
+        <span className='block w-screen text-center font-bold text-4xl'>PREVIOUS SPONSORS</span>
         <section className='brands'>
           {
             Sponsers.map((val,i)=>{
