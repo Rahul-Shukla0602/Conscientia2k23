@@ -194,7 +194,7 @@ function ParllaxSection() {
       //       textFillColor: 'transparent' 
       //   }}
       className='mb-10 text-center font-semibold lg:text-6xl text-2xl pb-10'
-      >CONSCIENTIA 2K22</p>
+      >GLIMPSES OF CONSCIENTIA 2022</p>
       <ImageSlider images={IMAGES} slidesToShow={3} autoplay={true} />
       </section>
     </div>

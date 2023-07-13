@@ -52,7 +52,7 @@ const Footer = () => {
       </div>
 
       <p className="text-center text-gray-300 mt-8">
-        © Conscientia2k23, Indian Institute Of Space Science And Technology, Thiruvananthapuram, Kerala - 695547
+        © Conscientia2023, Indian Institute Of Space Science And Technology, Thiruvananthapuram, Kerala - 695547
       </p>
 
     </div>

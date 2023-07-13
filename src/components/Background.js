@@ -55,7 +55,7 @@ export const Background = () => {
                 animation: {
                   enable: true,
                   minimumValue: 0.5,
-                  speed: 3,
+                  speed: 6,
                   sync: false,
                 },
                 random: {
@@ -73,7 +73,7 @@ export const Background = () => {
                   enable: true,
                   minimumValue: 0.5
                 },
-                value: 1
+                value: 1.2
               }
             }
           }}

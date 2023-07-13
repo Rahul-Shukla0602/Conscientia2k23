@@ -31,7 +31,7 @@ const Navbar = () => {
         onClick={() => setOpen(false)}
         to='/' className='mr-4'>
           <img src={logo} alt='logo'
-            className=' w-16 lg:w-24 h-12 lg:h-20  transform translate-x-[30px] lg:-translate-x-[70px]'
+            className=' w-16 lg:w-24 h-15 lg:h-20  transform translate-x-[15px] lg:-translate-x-[70px]'
           />
         </Link>
 

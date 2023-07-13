@@ -16,7 +16,7 @@ export const FooterLinks = [
     },
     {
         id:4,
-        title: 'Sponser',
+        title: 'Sponsor',
         path: '/sponsor'
     },
     {
@@ -31,7 +31,7 @@ export const FooterLinks = [
     // },
     {
         id:7,
-        title: 'About',
+        title: 'About Us',
         path: '/about'
     },
 
