@@ -15,10 +15,17 @@ import About from "./pages/About";
 import Error from './pages/Error'
 import Sponsers  from "./pages/Sponsers";
 import ContactUs  from "./pages/ContactUs";
+// import MyProfile from "./components/DashBoard/myProfile";
+// import DashBoard from "./pages/DashBoard";
+// import { useSelector } from "react-redux";
+import TestingSchool from "./components/test/TestingSchool";
+// import { ACCOUNT_TYPE } from "./utils/constant";
+// import AddEvent from "./components/DashBoard/addEvent";
 
 function App() {
   const [preloader, setPreloader] = useState("visible");
   const [maincontent, setmaincontent] = useState("hidden");
+  // const { user } = useSelector((state) => state.profile)
   setTimeout(() => {
     setPreloader("hidden");
     setmaincontent("visible");
@@ -48,6 +55,9 @@ function App() {
               <Route path="/sponsor" element={<Sponsers/>}></Route>
               <Route path="/contactus" element={<ContactUs/>}></Route>
               <Route path="*" element={<Error/>}></Route>
+              <Route path="/event" element={<TestingSchool/>}></Route>
+              {/* <Route element={<DashBoard/>}>
+              </Route> */}
             </Routes>
           </div>
         </div>
@@ -57,3 +67,13 @@ function App() {
 }
 
 export default App;
+
+// <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
+// {
+//   user?.accountType === ACCOUNT_TYPE.ORGANIZER && (
+//     <>
+//       <Route path="/dashboard/add-event" element={<AddEvent/>}/>
+//       {/* <Route path="/dashboard/my-event" element={</>} /> */}
+//     </>
+//   )
+// }
