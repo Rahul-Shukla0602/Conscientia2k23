@@ -25,26 +25,20 @@ const TestingSchool = () => {
         </p>
         <div className='flex items-center justify-around mt-5'>
           <Link
-            href='https://drive.google.com/file/d/1u_XUDuncK3X0TMJBxupw3dTOsaxDoZul/view?usp=sharing'
-            target='_blank'
-            rel='noopener noreferrer'
+            to='https://drive.google.com/file/d/1u_XUDuncK3X0TMJBxupw3dTOsaxDoZul/view?usp=sharing'
             className='flex justify-center items-center text-pink-100'
           >
             <AiOutlineLink />
             <span>BROCHURE</span>
           </Link>
           <Link
-            href='https://res.cloudinary.com/dwdwnfcnx/image/upload/v1689795885/Conscientiateam/Science_Exhibition_jk208n.png'
-            target='_blank'
-            rel='noopener noreferrer'
+            to='https://res.cloudinary.com/dwdwnfcnx/image/upload/v1689795885/Conscientiateam/Science_Exhibition_jk208n.png'
             className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg'
           >
             Details
           </Link>
           <Link
-            href='https://docs.google.com/forms/d/e/1FAIpQLSfhAaf1NgZoIRLvdgTPBYraURzEyX4fnFwER0FJ4TMzQuLX1g/viewform'
-            target='_blank'
-            rel='noopener noreferrer'
+            to='https://docs.google.com/forms/d/e/1FAIpQLSfhAaf1NgZoIRLvdgTPBYraURzEyX4fnFwER0FJ4TMzQuLX1g/viewform'
             className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg'
           >
             Register
