@@ -7,7 +7,7 @@ import logo from '../../assets/image/logo.png';
 
 const Footer = () => {
   return (
-    <div className="w-screen bg-richblack-800 text-white py-10 text-lg hover:">
+    <div className="w-full bg-richblack-800 text-white py-10 text-lg hover:">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-center lg:gap-[360px] px-4">
 
         <div className="flex items-center">

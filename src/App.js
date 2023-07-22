@@ -15,6 +15,8 @@ import About from "./pages/About";
 import Error from './pages/Error'
 import Sponsers  from "./pages/Sponsers";
 import ContactUs  from "./pages/ContactUs";
+import Merchandise from "./pages/Merchandise";
+import Cart from "./pages/Cart";
 
 function App() {
   const [preloader, setPreloader] = useState("visible");
@@ -46,6 +48,8 @@ function App() {
               <Route path="/update-password/:id" element={<UpdatePassword/>}></Route>
               <Route path="/about" element={<About/>}></Route>
               <Route path="/sponsor" element={<Sponsers/>}></Route>
+              <Route path="/merchandise" element={<Merchandise/>}></Route>
+              <Route path="/cart" element={<Cart/>}></Route>
               <Route path="/contactus" element={<ContactUs/>}></Route>
               <Route path="*" element={<Error/>}></Route>
             </Routes>

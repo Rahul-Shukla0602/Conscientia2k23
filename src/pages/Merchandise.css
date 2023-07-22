@@ -1,0 +1,19 @@
+#merchfab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+
+#fabcart{
+    height: 100%;
+    width: 50%;
+}

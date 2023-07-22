@@ -29,9 +29,9 @@ const Navbar = () => {
 
         <Link 
         onClick={() => setOpen(false)}
-        to='/' className='mr-4'>
+        to='/' className='mr-4 md:hidden lg:block'>
           <img src={logo} alt='logo'
-            className=' w-16 lg:w-24 h-15 lg:h-20  transform translate-x-[15px] lg:-translate-x-[70px]'
+            className='w-16 xl:w-24 h-15 xl:h-20  transform translate-x-[15px] xl:-translate-x-[70px]'
           />
         </Link>
 
@@ -64,9 +64,9 @@ const Navbar = () => {
         <nav 
         ref={myref}
         onClick={(e)=>e.stopPropagation()}
-        className={`md:flex lg:flex-row flex-col md:items-center
+        className={`md:flex lg:flex-row flex-col md:items-center md:ml-[-20em] lg:-ml-16 md:text-sm
         ${navbarOpen && Open ? 'w-[200px] h-[250px] px-5 text-end absolute block transform translate-x-[100px] translate-y-[170px] bg-transparent backdrop-blur-2xl' : 'hidden'}`}>
-          <ul className='z-50 md:flex md:items-center space-x-6 md:space-x-10'>
+          <ul className='z-50 md:flex md:items-center space-x-6 md:space-x-4 lg:space-x-10'>
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                 <Link 
@@ -84,7 +84,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className='flex flex-col lg:flex-row items-center space-x-4 gap-2  lg:pl-[700px] absolute'>
+          <div className='flex flex-col md:flex-row items-center space-x-4 gap-2 md:pl-[700px] lg:pl-[650px] lg:text-sm  xl:pl-[700px] absolute'>
           {!token && (
             <Link
             onClick={() => setOpen(false)}
@@ -100,7 +100,7 @@ const Navbar = () => {
             to='/signup'
             className={`${navbarOpen?'transform translate-x-[65px] text-richblack-100 border border-richblack-500 rounded-md px-2 py-1  bg-richblack-700':'lg:block text-richblack-100 border border-richblack-500 rounded-md px-4 py-2 bg-richblack-700'}`}
             >
-              Sign Up
+              Signup
             </Link>
           )}
           {token  && (
