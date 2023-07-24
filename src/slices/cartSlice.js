@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast"
 
 
 const cartSlice = createSlice({
@@ -13,8 +14,10 @@ const cartSlice = createSlice({
             // console.log(actions.payload);
             let isAlready = false;
             state.items.forEach((val,i)=>{
-                if(JSON.stringify(val)===JSON.stringify(actions.payload)){
-                    alert("Item already added to cart")
+                let valobj = JSON.parse(JSON.stringify(val))
+                let payloadobj = JSON.parse(JSON.stringify(actions.payload))
+                if(valobj.id === payloadobj.id && valobj.size === payloadobj.size){
+                    toast.error("Item already added to cart")
                     isAlready = true;
                 }
             })
@@ -22,11 +25,11 @@ const cartSlice = createSlice({
                 state.items.push(actions.payload);
                 state.totalitems += 1;
                 state.totalamount += actions.payload.rate;
-                alert("Item added successfully")
+                toast.success("Item added successfully")
             }
         },
         increasequantity(state,actions){
-            console.log(actions.payload)
+            // console.log(actions.payload)
             state.items[actions.payload.index].qty += 1;
             state.totalamount += actions.payload.rate;
             state.totalitems += 1;
@@ -37,7 +40,7 @@ const cartSlice = createSlice({
             }else{
                 let temp = []
                 state.items.forEach((v,i)=>{
-                    if(i!=actions.payload.index){
+                    if(i!==actions.payload.index){
                         temp.push(v)
                     }
                 })
@@ -45,9 +48,14 @@ const cartSlice = createSlice({
             }
             state.totalamount -= actions.payload.rate;
             state.totalitems -= 1;
+        },
+        clearCart(state,actions){
+            state.totalamount = 0;
+            state.totalitems = 0;
+            state.items = [];
         }
     }
 })
 
-export const {addtocart,increasequantity,decreasequnatity} = cartSlice.actions;
+export const {addtocart,increasequantity,decreasequnatity,clearCart} = cartSlice.actions;
 export default cartSlice.reducer;

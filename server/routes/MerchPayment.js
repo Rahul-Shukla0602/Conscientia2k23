@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    merchPayment
+    initiateOrder,
+    verifyOrder
 } = require('../controllers/MerchPayment')
 
-router.get('/',merchPayment)
+router.post('/init',initiateOrder)
+router.post('/verify',verifyOrder)
 
 module.exports = router
