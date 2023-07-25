@@ -33,9 +33,9 @@ const EventDetails = () => {
             <p>{eventData.eventDescription}</p>
             <div className='flex gap-4'>
                 <p>{
-                  eventData.price !== 0 ? {"Price":eventData.price} :""
+                  eventData.price !== 0 ?<p>Price: {eventData.price}</p> :""
                 }</p>
-                <p>Fee: {eventData.fee}</p>
+                <p>REGISTRATION FEE: {eventData.fee}</p>
             </div>
             <div className=' flex gap-6'>
                <Link to={eventData.BrochureLink} className='flex justify-center items-center text-pink-100'>
