@@ -32,7 +32,9 @@ const EventDetails = () => {
             <p>{eventData.eventName}</p>
             <p>{eventData.eventDescription}</p>
             <div className='flex gap-4'>
-                <p>Price: {eventData.price}</p>
+                <p>{
+                  eventData.price !== 0 ? {"Price":eventData.price} :""
+                }</p>
                 <p>Fee: {eventData.fee}</p>
             </div>
             <div className=' flex gap-6'>
