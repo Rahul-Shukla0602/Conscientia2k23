@@ -8,15 +8,15 @@ import SidebarLink from './SidebarLink.js';
 import { useNavigate } from 'react-router-dom';
 import { VscSignOut } from 'react-icons/vsc';
 import ConfirmationModal from '../common/ConfirmationModal';
-import { useOnClickOutside } from '../../hooks/useOnClickOutside'
+// import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
 const Slider = ({isOpen}) => {
-  const [Open,setOpen] = useState(false);
+  // const [Open,setOpen] = useState(false);
   const { user, loading: profileLoading } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const myref = useRef();
-  useOnClickOutside(myref,()=>{setOpen(false)});
+  // useOnClickOutside(myref,()=>{setOpen(false)});
   const { loading: authLoading } = useSelector((state) => state.auth);
   const [confirmationModal, setConfirmationModal] = useState(null);
   // const [side, setSide] = useState(false);
@@ -46,7 +46,7 @@ const Slider = ({isOpen}) => {
         <div className='flex flex-col'>
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null;
-            return <SidebarLink key={link.id} link={link} iconName={link.icon} onClick={() => setOpen(false)}/>;
+            return <SidebarLink key={link.id} link={link} iconName={link.icon}/>;
           })}
         </div>
         <div className='mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-600'></div>
@@ -68,7 +68,7 @@ const Slider = ({isOpen}) => {
             <div className='flex items-center lg:ml-[30px] gap-x-2'>
               <VscSignOut className='text-lg' />
               <span
-              onClick={() => setOpen(false)}
+              // onClick={() => setOpen(false)}
               >Logout</span>
             </div>
           </button>

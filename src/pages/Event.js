@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { apiconnector } from '../services/apiconnector';
 import { categories } from '../services/apis';
 import { getCatalogaPageData } from '../services/operations/PageAndComponents';
-import Error from '../pages/Error'
+// import Error from '../pages/Error'
 import {setLoading} from '../slices/profileSlice'
 // import { Link, matchPath } from 'react-router-dom';
 import EventCard from '../components/EventCard'
 
 const Event = () => {
   const { loading } = useSelector((state) => state.profile)
-  const [ catalogName,setcatalogName]  = useState("Events");
-  const { token } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.profile);
-  const location = useLocation();
+  const [ catalogName,setcatalogName]  = useState("Workshops");
+  // const { token } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.profile);
+  // const location = useLocation();
   const [sublinks, setSubLinks] = useState([]);
   const [categoryId, setCategoryId] = useState("");
   const [catalogPageData, setCatalogPageData] = useState(null);
-  const [active, setActive] = useState(1)
+  // const [active, setActive] = useState(1)
   const [selectedSublink, setSelectedSublink] = useState(null); // State to track the selected sublink
   
 

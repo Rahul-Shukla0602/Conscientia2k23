@@ -19,7 +19,6 @@ import MyProfile from "./components/DashBoard/myProfile";
 import DashBoard from "./pages/DashBoard";
 import { useSelector } from "react-redux";
 import Event  from "./pages/Event";
-import TestingSchool from "./components/test/TestingSchool";
 import { ACCOUNT_TYPE } from "./utils/constant";
 import AddEvent from "./components/DashBoard/addEvent";
 import MyEvents from "./components/DashBoard/MyEvents";

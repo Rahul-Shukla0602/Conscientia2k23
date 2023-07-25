@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { apiconnector } from '../services/apiconnector';
-import { useSelector } from 'react-redux';
-import {setLoading} from '../slices/profileSlice'
-import {eventEndpoints} from '../services/apis'
+// import { apiconnector } from '../services/apiconnector';
+// import { useSelector } from 'react-redux';
+// import {setLoading} from '../slices/profileSlice'
+// import {eventEndpoints} from '../services/apis'
 import { fetchEventDetails } from '../services/operations/eventAPI';
 import { AiOutlineLink } from 'react-icons/ai';
 
 const EventDetails = () => {
     const {eventId} = useParams();
     const [eventData,seteventData] = useState('');
-    const { loading } = useSelector((state) => state.profile)
+    // const { loading } = useSelector((state) => state.profile)
 
     useEffect(() => {
         // Calling fetchCourseDetails fucntion to fetch the details

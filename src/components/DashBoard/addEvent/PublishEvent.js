@@ -23,7 +23,7 @@ export default function PublishEvent() {
     if (event?.status === EVENT_STATUS.PUBLISHED) {
       setValue("public", true)
     }
-  }, [])
+  })
 
   const goBack = () => {
     dispatch(setStep(1))

@@ -38,11 +38,11 @@ const SignupForm = () => {
       tabName: "PARTICIPANT",
       type: ACCOUNT_TYPE.PARTICIPANT,
     },
-    {
-      id: 2,
-      tabName: "ORGANIZER",
-      type: ACCOUNT_TYPE.ORGANIZER,
-    },
+    // {
+    //   id: 2,
+    //   tabName: "ORGANIZER",
+    //   type: ACCOUNT_TYPE.ORGANIZER,
+    // },
   ]
   const handleOnSubmit = ()=>{
     if (password !== confirmPassword) {

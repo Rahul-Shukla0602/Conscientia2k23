@@ -9,7 +9,6 @@ import { HiClock } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-import { formattedDate } from "../../utils/dataFormatter";
 import {
   deleteEvent,
   fetchOrganizerEvents,
@@ -22,7 +21,6 @@ const EventsTable = ({ events, setEvent }) => {
   const { token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
   const [confirmationModal, setConfirmationModal] = useState(null);
-  const TRUNCATE_LENGTH = 10;
 
   const handleEventDelete = async (eventId) => {
     setLoading(true);
