@@ -23,6 +23,7 @@ export default function PublishEvent() {
     if (event?.status === EVENT_STATUS.PUBLISHED) {
       setValue("public", true)
     }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const goBack = () => {

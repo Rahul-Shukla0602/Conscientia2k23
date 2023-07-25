@@ -52,6 +52,7 @@ const EventInformationForm = () => {
             setValue("eventPosterLink",event.PosterLink)
         }
         getCategories()
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const isFormUpdated = () => {
