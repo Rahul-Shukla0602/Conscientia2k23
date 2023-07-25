@@ -3,3 +3,8 @@ export const ACCOUNT_TYPE = {
     ORGANIZER: "Organizer",
     ADMIN: "Admin",
 }
+
+export const EVENT_STATUS = {
+    DRAFT: "Draft",
+    PUBLISHED: "Published",
+}

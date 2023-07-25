@@ -5,6 +5,9 @@ const {
     createEvent,
     getAllEvents,
     getEventByID,
+    editEvent,
+    getOrganizerEvents,
+    deleteEvent
   } = require("../controllers/Event")
   
   // Categories Controllers Import
@@ -24,6 +27,9 @@ const {
   router.post("/createEvent", auth,isOrganizer , createEvent)
   router.get("/getAllEvents", getAllEvents)
   router.post("/getEventByID", getEventByID)
+  router.post("/editEvent",auth,isOrganizer,editEvent)
+  router.get("/getOrganizerEvent",auth,isOrganizer,getOrganizerEvents)
+  router.delete("/deleteEvent", deleteEvent)
   
   // ********************************************************************************************************
   //                                      Category routes (Only by Admin)

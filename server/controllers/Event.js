@@ -5,19 +5,17 @@ const Category = require('../models/Category');
 const {imageUploadCloudinary} = require('../utils/imageUpload');
 exports.createEvent = async (req,res)=>{
     try{
-        let {eventName,eventDescription,eventContent,price,tag,category,instructions,
-            status,startDate,endDate,location} = req.body;
-        console.log(req.body);
+        let {eventName,eventDescription,price,fee,category,instructions, WhatYouWillLearn,
+            status,startDate,endDate,BrochureLink,PosterLink} = req.body;
         const thumbnail = req.files.thumbnail;
         if (!thumbnail || !thumbnail.tempFilePath) {
             return res.status(400).json({
               success: false,
               message: "Thumbnail file missing",
             });
-          }
-        console.log("thumbnail: ",thumbnail)  
-          if( !eventContent|| !eventDescription || !eventName || !startDate || !endDate ||
-            !location || !price || !category || !thumbnail){
+          } 
+          if(!eventDescription || !eventName || !startDate || !endDate || !fee || ! WhatYouWillLearn ||
+            !price || !category || !thumbnail || !instructions || !BrochureLink || !PosterLink){
             return res.status(404).json({
                 success:false,
                 message:"All fields are required"
@@ -29,12 +27,12 @@ exports.createEvent = async (req,res)=>{
         if(!organizerDetail){
             return res.status(404).json({
                 success:false,
-                message:"Instructor not found",
+                message:"Organizer not found",
             });
         }
         if (!status || status === undefined) {
-			status = "Draft";
-		}
+          status = "Draft";
+        }
         const categoryDetail = await Category.findById(category);
         if(!categoryDetail){
             return res.status(404).json({
@@ -50,24 +48,27 @@ exports.createEvent = async (req,res)=>{
               message: "Failed to upload thumbnail image",
             });
         }
-        console.log(thumbnailImage);
-        console.log("thumbnailImage",thumbnailImage);
+        // console.log("thumbnailImage",thumbnailImage);
+        // console.log("BEFORE2NEW$: ",status,eventName,eventDescription, WhatYouWillLearn,price, fee,organizerDetail._id,instructions,startDate,endDate,thumbnailImage.secure_url,categoryDetail._id)
         const newEvent = await Event.create({
             eventName,
             eventDescription,
             organizer:organizerDetail._id,
-            eventContent,
+            WhatYouWillLearn,
             price,
-            tag:tag,
+            fee,
             instructions,
             status:status,
             startDate,
             endDate,
-            location,
             thumbnail:thumbnailImage.secure_url,
             category:categoryDetail._id,
+            BrochureLink,
+            PosterLink
         })
-        console.log("Event ",newEvent);
+        console.log("BEFORE2NEW1")
+        console.log("Event hello mitro",newEvent);
+        console.log("BEFORE2NEW2")
         await User.findByIdAndUpdate(
             {_id:organizerDetail._id},
             {
@@ -81,7 +82,7 @@ exports.createEvent = async (req,res)=>{
             {_id:categoryDetail._id},
             {
                 $push:{
-                    Event:newEvent._id
+                    event:newEvent._id
                 }
             },
             {
@@ -120,7 +121,10 @@ exports.getAllEvents = async (req,res)=>{
             endDate:true,
             location:true,
             views:true,
-            category:true,
+            fee:true,
+            BrochureLink:true,
+            PosterLink:true,
+            WhatYouWillLearn:true
             }).populate('organizer').exec();
             return res.json({
                 success:true,
@@ -137,14 +141,14 @@ exports.getAllEvents = async (req,res)=>{
 }
 exports.getEventByID = async (req,res)=>{
     try{
-        const {Event_id} = req.body;
-        if(!Event_id){
+        const {eventId} = req.body;
+        if(!eventId){
             return res.status(404).json({
                 success:false,
                 message:"Event id is not available",
             });
         }
-        const eventDetail = await Event.findById({_id:Event_id}).populate(
+        const eventDetail = await Event.findById({_id:eventId}).populate(
             {
                 path:'organizer',
                 populate:{
@@ -159,9 +163,10 @@ exports.getEventByID = async (req,res)=>{
         if(!eventDetail){
             return res.status(404).json({
                 success:false,
-                message:`eventDetail of ${Event_id} not found`,
+                message:`eventDetail of ${eventId} not found`,
             });
         }
+        console.log("eventIN: ",eventDetail)
         return res.json({
             success: true,
             message: "Successfully fetched event",
@@ -174,4 +179,121 @@ exports.getEventByID = async (req,res)=>{
             message:"Failed to get Event",
         });
     }
+}
+
+exports.editEvent = async (req, res) => {
+    try {
+      const { eventId } = req.body
+      const updates = req.body
+      const event = await Event.findById(eventId)
+  
+      if (!event) {
+        return res.status(404).json({ error: "Event not found" })
+      }
+  
+      // If Thumbnail Image is found, update it
+      if (req.files) {
+        console.log("thumbnail update")
+        const thumbnail = req.files.thumbnail
+        const thumbnailImage = await imageUploadCloudinary(
+          thumbnail,
+          process.env.FOLDER_NAME
+        )
+        event.thumbnail = thumbnail.secure_url
+      }
+  
+      // Update only the fields that are present in the request body
+      for (const key in updates) {
+        if (updates.hasOwnProperty(key)) {
+          if (key === "tag" || key === "instructions") {
+            event[key] = JSON.parse(updates[key])
+          } else {
+            event[key] = updates[key]
+          }
+        }
+      }
+  
+      await event.save()
+  
+      const updatedEvent = await Event.findOne({
+        _id: eventId,
+      })
+        .populate({
+          path: "organizer",
+          populate: {
+            path: "additionalDetails",
+          },
+        })
+        .populate("category")
+        .populate({
+          path: "eventContent",
+        })
+        .exec()
+  
+      res.json({
+        success: true,
+        message: "Event updated successfully",
+        data: updatedEvent,
+      })
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: error.message,
+      })
+    }
+  }
+
+
+  exports.getOrganizerEvents = async (req,res)=>{
+    try{
+        const organizerId = req.user.id
+        const organizerEvents = await Event.find({
+            organizer: organizerId,
+        }).sort({ createdAt: -1 });
+        res.status(200).json({
+            success: true,
+            data: organizerEvents,
+          })
+    } catch(error){
+        res.status(500).json({
+            success: false,
+            message: "Failed to retrieve organizerEvents courses",
+            error: error.message,
+        })
+    }
+}
+exports.deleteEvent = async (req, res) => {
+  try {
+    const { eventId } = req.body
+
+    // Find the event
+    const event = await Event.findById(eventId)
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" })
+    }
+
+       const studentEnrolled = event.participantEnrolled
+       console.log(studentEnrolled)
+       for (const studentId of studentEnrolled){
+         await User.findByIdAndUpdate(studentId,{
+           $pull: { events: eventId },
+         })}
+  
+    
+       // Delete the course
+       await Event.findByIdAndDelete(eventId)
+       return res.status(200).json({
+         success: true,
+         message: "Event deleted successfully",
+       })  
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    })
+  }
 }

@@ -16,22 +16,31 @@ const eventSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    //--------------
     eventContent:{
             type:String,
             trim:true,
-            require:true
+            // require:true
         },
     price: {
         type: Number,
         required: true,
     },
+    fee:{
+        type:Number,
+        require:true,
+    },
+    WhatYouWillLearn:{
+        type:String,
+    },
     thumbnail: {
         type: String,
         required: true,
     },
+    //-------------------
     tag: {
         type: [String],
-        required: true,
+        // required: true,
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
@@ -47,10 +56,15 @@ const eventSchema = new mongoose.Schema({
     ],
     instructions: {
         type: [String],
+        required:true
     },
     status: {
         type: String,
-        enum: ['Draft', 'Publish'],
+        enum: ['Draft', 'Published'],
+    },
+    eventType:{
+        type:String,
+        enum:["Team","NoTeam"]
     },
     startDate: {
         type: Date,
@@ -59,10 +73,18 @@ const eventSchema = new mongoose.Schema({
     endDate: {
         type: Date,
         required: true,
+    }, 
+    BrochureLink:{
+        type:String,
+        require:true
+    },
+    PosterLink:{
+        type:String,
+        require:true
     },
     location: {
         type: String,
-        required: true,
+        // required: true,
     },
     views: {
         type: Number,

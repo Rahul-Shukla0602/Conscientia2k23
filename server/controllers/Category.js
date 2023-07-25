@@ -1,5 +1,8 @@
 const Category = require('../models/Category');
 const Course = require('../models/Event');
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max)
+  }
 //create Category
 exports.createCategory = async (req,res)=>{
     try{
@@ -44,45 +47,80 @@ exports.showAllCategories = async (req,res)=>{
         });
     }
 }
-exports.categoryPageDetails = async (req,res)=>{
-    try{
-        const {category_id} = req.body;
-        const selectedCategory = await Category.findById(category_id)
-                                               .populate("event")
-                                               .exec();
-        if(!selectedCategory){
-            return res.status(400).json({
-                success:false,
-                message:"this Category is not present"
-            });
-        }
-        const differentCategory = await Category.find({
-            _id:{$ne:category_id},
+exports.categoryPageDetails = async (req, res) => {
+    try {
+      const { categoryId } = req.body
+      console.log("PRINTING CATEGORY ID: ", categoryId);
+      // Get courses for the specified category
+      console.log("KAY hua")
+      const selectedCategory = await Category.findById(categoryId)
+        .populate({
+          path: "event",
+          match: { status: "Published" },
+          populate: {
+            path: "organizer",
+        },
         })
-        .populate("event")
-        .exec();
-        const category = await Category.findById({_id:category_id}).populate("event");
+        .exec()
 
-        const topEvents = await Course.aggregate([
-            {$match:{_id:{$in:category.event}}},
-            {$project:{ eventName: 1, participantCount:{ $size: "$participantEnrolled" }}},
-            {$sort:{participantCount: -1}},
-            {$limit:5}
-        ]);
-        //return response
-        return res.status(200).json({
-            success:true,
-            data:{
-                selectedCategory,
-                differentCategory,
-                topEvents,
-            },
-        });
-    } catch(error){
-        console.log(error);
-        return res.status(500).json({
-            success:false,
-            message:error.message,
-        });
+      // Handle the case when the category is not found
+      if (!selectedCategory) {
+        console.log("Category not found.")
+        return res
+          .status(404)
+          .json({ success: false, message: "Category not found" })
+      }
+      // Handle the case when there are no courses
+      if (selectedCategory.event.length === 0) {
+        console.log("No event found for the selected category.")
+        return res.status(404).json({
+          success: false,
+          message: "No event found for the selected category.",
+        })
+      }
+      console.log("Selected category Event", selectedCategory)
+      // Get courses for other categories
+      const categoriesExceptSelected = await Category.find({
+        _id: { $ne: categoryId },
+      })
+      let differentCategory = await Category.findOne(
+        categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
+          ._id
+      )
+        .populate({
+          path: "event",
+          match: { status: "Published" },
+          populate: {
+            path: "organizer",
+        },
+        })
+        .exec()
+        console.log("Different Event", differentCategory)
+      // Get top-selling courses across all categories
+      const allCategories = await Category.find()
+        .populate({
+          path: "event",
+          match: { status: "Published" },
+          populate: {
+            path: "organizer",
+        },
+        
+        })
+        .exec()
+        console.log("allCategories: ",allCategories)   
+
+      res.status(200).json({
+        success: true,
+        data: {
+          selectedCategory,
+          differentCategory,
+        },
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: error.message,
+      })
     }
-}
+  }

@@ -30,7 +30,7 @@ const LoginForm = () => {
       },
       {
         id: 2,
-        tabName: "ORGANIZE",
+        tabName: "ORGANIZER",
         type: ACCOUNT_TYPE.ORGANIZER,
       },
     ]
