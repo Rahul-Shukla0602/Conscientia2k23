@@ -52,7 +52,7 @@ const EventInformationForm = () => {
             setValue("eventPosterLink",event.PosterLink)
         }
         getCategories()
-    })
+    },[])
 
     const isFormUpdated = () => {
         const currentValues = getValues()
