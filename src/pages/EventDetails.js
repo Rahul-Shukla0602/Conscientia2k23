@@ -47,7 +47,7 @@ const EventDetails = () => {
             </div>
             <button
              className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg'
-            >Resigter</button>
+            >Register</button>
         </div>
     </div>
   )

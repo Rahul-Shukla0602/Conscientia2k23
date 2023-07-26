@@ -82,6 +82,14 @@ const eventSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    EventType:{
+        type:String,
+        require:true
+    },
+    TeamMembers:{
+        type:[String],
+        require:true
+    },
     location: {
         type: String,
         // required: true,
