@@ -16,6 +16,10 @@ const {
     createCategory,
     categoryPageDetails,
   } = require("../controllers/Category")
+
+  const {
+    registerEvent
+  } = require('../controllers/Participant')
   
   
   const { auth, isOrganizer, isParticipant, isAdmin } = require("../middlewares/auth")
@@ -30,6 +34,7 @@ const {
   router.post("/editEvent",auth,isOrganizer,editEvent)
   router.get("/getOrganizerEvent",auth,isOrganizer,getOrganizerEvents)
   router.delete("/deleteEvent", deleteEvent)
+  router.post("/registerEvent",registerEvent)
   
   // ********************************************************************************************************
   //                                      Category routes (Only by Admin)

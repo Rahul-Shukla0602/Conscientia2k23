@@ -19,7 +19,7 @@ const Event = () => {
   const [categoryId, setCategoryId] = useState("");
   const [catalogPageData, setCatalogPageData] = useState(null);
   // const [active, setActive] = useState(1)
-  const [selectedSublink, setSelectedSublink] = useState(null); // State to track the selected sublink
+  const [selectedSublink, setSelectedSublink] = useState(0); // State to track the selected sublink
   
 
   useEffect(() => {

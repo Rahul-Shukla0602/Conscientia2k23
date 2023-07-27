@@ -4,16 +4,18 @@ import './Cart.css'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {AiOutlineMinus} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearCart, decreasequnatity, increasequantity } from '../slices/cartSlice'
+import { 
+    // clearCart, 
+    decreasequnatity, increasequantity } from '../slices/cartSlice'
 import Footer from '../components/common/Footer'
-import { setLoading } from '../slices/authSlice'
-import { toast } from "react-hot-toast"
+// import { setLoading } from '../slices/authSlice'
+// import { toast } from "react-hot-toast"
 
 const Cart = ()=>{
 
     const cartitems = useSelector((state) => state.cart)
-    const { token } = useSelector((state) => state.auth);
-    const {user} = useSelector((state)=> state.profile);
+    // const { token } = useSelector((state) => state.auth);
+    // const {user} = useSelector((state)=> state.profile);
     const dispatch = useDispatch();
 
     // function loadScript(src) {

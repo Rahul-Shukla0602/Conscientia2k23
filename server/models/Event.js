@@ -54,6 +54,11 @@ const eventSchema = new mongoose.Schema({
             required: true,
         },
     ],
+    TeamDetails:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Participant',
+        require:true
+    }],
     instructions: {
         type: [String],
         required:true
@@ -64,7 +69,11 @@ const eventSchema = new mongoose.Schema({
     },
     eventType:{
         type:String,
-        enum:["Team","NoTeam"]
+        require:true
+    },
+    maxParticipant:{
+        type:Number,
+        require:true
     },
     startDate: {
         type: Date,
@@ -86,10 +95,7 @@ const eventSchema = new mongoose.Schema({
         type:String,
         require:true
     },
-    TeamMembers:{
-        type:[String],
-        require:true
-    },
+    
     location: {
         type: String,
         // required: true,

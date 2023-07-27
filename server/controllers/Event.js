@@ -5,7 +5,7 @@ const Category = require('../models/Category');
 const {imageUploadCloudinary} = require('../utils/imageUpload');
 exports.createEvent = async (req,res)=>{
     try{
-        let {eventName,eventDescription,price,fee,category,instructions, WhatYouWillLearn,
+        let {eventName,eventDescription,price,fee,category,instructions, WhatYouWillLearn,eventType, maxParticipant,
             status,startDate,endDate,BrochureLink,PosterLink} = req.body;
         const thumbnail = req.files.thumbnail;
         if (!thumbnail || !thumbnail.tempFilePath) {
@@ -48,8 +48,11 @@ exports.createEvent = async (req,res)=>{
               message: "Failed to upload thumbnail image",
             });
         }
-        // console.log("thumbnailImage",thumbnailImage);
-        // console.log("BEFORE2NEW$: ",status,eventName,eventDescription, WhatYouWillLearn,price, fee,organizerDetail._id,instructions,startDate,endDate,thumbnailImage.secure_url,categoryDetail._id)
+        console.log("thumbnailImage",thumbnailImage);
+        console.log("BEFORE2NEW$: ",status,eventName,eventDescription, WhatYouWillLearn,price,
+        fee,organizerDetail._id,instructions,startDate,endDate,thumbnailImage.secure_url,"category",categoryDetail._id
+        ,"max: ",maxParticipant, "Type: ",eventType,
+        )
         const newEvent = await Event.create({
             eventName,
             eventDescription,
@@ -57,6 +60,8 @@ exports.createEvent = async (req,res)=>{
             WhatYouWillLearn,
             price,
             fee,
+            eventType,
+            maxParticipant,
             instructions,
             status:status,
             startDate,
@@ -124,7 +129,9 @@ exports.getAllEvents = async (req,res)=>{
             fee:true,
             BrochureLink:true,
             PosterLink:true,
-            WhatYouWillLearn:true
+            WhatYouWillLearn:true,
+            eventType:true,
+            maxParticipant:true,
             }).populate('organizer').exec();
             return res.json({
                 success:true,

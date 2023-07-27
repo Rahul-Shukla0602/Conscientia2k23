@@ -50,6 +50,8 @@ const EventInformationForm = () => {
             setValue("endDate", event.endDate)
             setValue("eventBrochureLink",event.BrochureLink)
             setValue("eventPosterLink",event.PosterLink)
+            setValue("eventTeam",event.eventType)
+            setValue("eventNumber",event.maxParticipant)
         }
         getCategories()
          // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +72,9 @@ const EventInformationForm = () => {
             currentValues.startDate !== event.startDate ||
             currentValues.endDate !== event.endDate ||
             currentValues.eventBrochureLink !== event.BrochureLink ||
-            currentValues.eventPosterLink !== event.PosterLink
+            currentValues.eventPosterLink !== event.PosterLink ||
+            currentValues.eventTeam !== event.eventType ||
+            currentValues.eventNumber !== event.maxParticipant
           )
             return true
         else
@@ -129,6 +133,12 @@ const EventInformationForm = () => {
         if (currentValues.eventPosterLink !== event.PosterLink) {
           formData.append("PosterLink", data.eventPosterLink)
         }
+        if (currentValues.eventTeam !== event.eventType) {
+          formData.append("eventType", data.eventTeam)
+        }
+        if (currentValues.eventNumber !== event.maxParticipant) {
+          formData.append("maxParticipant", data.eventName)
+        }
         // console.log("Edit Form data: ", formData)
         setLoading(true)
         const result = await editEventDetails(formData, token)
@@ -156,6 +166,8 @@ const EventInformationForm = () => {
     formData.append("thumbnail", data.eventImage)
     formData.append("BrochureLink", data.eventBrochureLink)
     formData.append("PosterLink", data.eventPosterLink)
+    formData.append("eventType", data.eventTeam)
+    formData.append("maxParticipant", data.eventNumber)
     setLoading(true)
     const result = await addEventDetails(formData, token)
     if (result) {
@@ -386,6 +398,47 @@ const EventInformationForm = () => {
                 )}
             </label>
 
+            <label className='flex flex-col gap-4' htmlFor="eventTeam">
+                <p>Team Event<sup className="text-pink-200">*</sup></p>
+                <input
+                    id="eventTeam"
+                    placeholder="Enter YES or NO"
+                    {...register("eventTeam", { required: true })}
+                    style={{
+                      boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                    }}
+                    className=" w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
+                />
+                {errors.eventTeam && (
+                <span className="ml-2 text-xs tracking-wide text-pink-200">
+                    eventTeam is required
+                </span>
+                )}
+            </label>
+
+            <label className='flex flex-col gap-4' htmlFor="eventNumber">
+                <p>Max Participant<sup className="text-pink-200">*</sup></p>
+                <input
+                    id="eventNumber"
+                    placeholder="Enter Number Ranging from 1 to N"
+                    {...register("eventNumber", { required: true,
+                    valueAsNumber: true,
+                    pattern: {
+                        value: /^(0|[1-9]\d*)(\.\d+)?$/,
+                    }
+                     })}
+                    style={{
+                      boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                    }}
+                    className=" w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
+                />
+                {errors.eventNumber&& (
+                <span className="ml-2 text-xs tracking-wide text-pink-200">
+                      event Number required
+                </span>
+                )}
+            </label>
+
             <RequirementsField
                 name="eventRequirements"
                 label="Requirements/Instructions"
@@ -394,7 +447,7 @@ const EventInformationForm = () => {
                 errors={errors}
                 getValues={getValues}
             />
-
+            
             <div className="flex justify-end gap-x-2">
                     {editEvent && (
                     <button
