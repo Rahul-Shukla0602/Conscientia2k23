@@ -25,8 +25,8 @@ import MyEvents from "./components/DashBoard/MyEvents";
 import EditEvent from "./components/DashBoard/EditEvent";
 import EventDetails from "./pages/EventDetails";
 import EventRegisteration from "./components/RegisterEvent";
-import Merchandise from "./pages/Merchandise";
-import Cart from "./pages/Cart";
+// import Merchandise from "./pages/Merchandise";
+// import Cart from "./pages/Cart";
 
 function App() {
   const [preloader, setPreloader] = useState("visible");
@@ -63,8 +63,8 @@ function App() {
               <Route path="*" element={<Error/>}></Route>
               <Route path="/events/:eventId" element={<EventDetails/>}/>
               <Route path="/event/registerEvent" element={<EventRegisteration/>}/>
-              <Route path="/merchandise" element={<Merchandise/>}></Route>
-              <Route path="/cart" element={<Cart/>}></Route>
+              {/* <Route path="/merchandise" element={<Merchandise/>}></Route> */}
+              {/* <Route path="/cart" element={<Cart/>}></Route> */}
               {/* <Route path="/event" element={<TestingSchool/>}></Route> */}
               <Route element={<DashBoard/>}>
                               <Route path="/dashboard/my-profile" element={<MyProfile/>}/>      
