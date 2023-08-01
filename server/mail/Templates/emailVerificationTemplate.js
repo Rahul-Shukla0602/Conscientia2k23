@@ -66,6 +66,8 @@ exports.otpTemplate = (otp) => {
 	
 	<body>
 		<div class="container">
+			<a href="https://http://localhost:3000"><img class="logo" src="https://res.cloudinary.com/dwdwnfcnx/image/upload/v1690132004/Conscientiateam/g85golybsz6bfzowafyf.png"
+				alt="conscientia2k23"></a>
 			<div class="message">OTP Verification Email</div>
 			<div class="body">
 				<p>Dear User,</p>

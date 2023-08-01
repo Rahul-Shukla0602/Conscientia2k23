@@ -24,7 +24,9 @@ import AddEvent from "./components/DashBoard/addEvent";
 import MyEvents from "./components/DashBoard/MyEvents";
 import EditEvent from "./components/DashBoard/EditEvent";
 import EventDetails from "./pages/EventDetails";
-import EventRegisteration from "./components/RegisterEvent";
+// import  RegistrationForm  from "./components/RegisterEvent/index";
+// import FinalEvent from "./components/RegisterEvent/FinalEvent";
+import RenderRegister from "./components/RegisterEvent/RenderRegister";
 // import Merchandise from "./pages/Merchandise";
 // import Cart from "./pages/Cart";
 
@@ -32,10 +34,17 @@ function App() {
   const [preloader, setPreloader] = useState("visible");
   const [maincontent, setmaincontent] = useState("hidden");
   const { user } = useSelector((state) => state.profile)
+  // const {loading} = useSelector((state) => state.profile)
   setTimeout(() => {
     setPreloader("hidden");
     setmaincontent("visible");
   }, 4000);
+  // if(loading){
+  //   setTimeout(() => {
+  //     setPreloader("hidden");
+  //     setmaincontent("visible");
+  //   }, 4000);
+  // }
 
   return (
     <>
@@ -62,7 +71,8 @@ function App() {
               <Route path="/contactus" element={<ContactUs/>}></Route>
               <Route path="*" element={<Error/>}></Route>
               <Route path="/events/:eventId" element={<EventDetails/>}/>
-              <Route path="/event/registerEvent" element={<EventRegisteration/>}/>
+              {/* <Route path="/event/registerEvent/:eventId" element={<RegistrationForm/>}/> */}
+              <Route path="/event/registerEvent/:eventId" element={<RenderRegister/>}/> 
               {/* <Route path="/merchandise" element={<Merchandise/>}></Route> */}
               {/* <Route path="/cart" element={<Cart/>}></Route> */}
               {/* <Route path="/event" element={<TestingSchool/>}></Route> */}

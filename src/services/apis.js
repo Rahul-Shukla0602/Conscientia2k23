@@ -17,6 +17,8 @@ export const eventEndpoints = {
     GET_ALL_ORGANIZER_EVENT_API: BASE_URL + "/event/getOrganizerEvent",
     DELETE_EVENT_API: BASE_URL + "/event/deleteEvent",
     GET_FULL_EVENT_DETAILS_AUTHENTICATED: BASE_URL + "/event/getFullEventDetails",
+    REGISTER_TEAM_API: BASE_URL + "/event/registerEvent",
+    EDIT_TEAM_API: BASE_URL + "/event/editTeam"
 }
 
 //CATEGORIE API
@@ -26,4 +28,9 @@ export const categories = {
 
 export const catalogData = {
     CATALOGPAGEDATA_API: BASE_URL + "/event/getCategoryPageDetails",
-  }
+}
+export const userEndpoints = {
+    EVENT_PAYMENT_API: BASE_URL + "/payment/capturePayment",
+    EVENT_VERIFY_API: BASE_URL + "/payment/verifySignature",
+    SEND_PAYMENT_SUCCESS_EMAIL_API: BASE_URL + "/payment/sendPaymentSuccessEmail",
+}

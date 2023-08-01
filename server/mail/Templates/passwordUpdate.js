@@ -55,6 +55,8 @@ exports.passwordUpdated = (email, name) => {
     
     <body>
         <div class="container">
+            <a href="https://www.conscientia.co.in/"><img class="logo" src="https://res.cloudinary.com/dwdwnfcnx/image/upload/v1690132004/Conscientiateam/g85golybsz6bfzowafyf.png"
+                alt="conscientia2k23"></a>
             <div class="message">Password Update Confirmation</div>
             <div class="body">
                 <p>Hey ${name},</p>
@@ -64,7 +66,7 @@ exports.passwordUpdated = (email, name) => {
             </div>
             <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
                 at
-                <a href="mailto:info@Conscientiateamiist@gmail.com">info@Conscientiateamiist@gmail.com</a>. We are here to help!
+                <a href="mailto:info@Conscientiateamiist@gmail.com">Conscientiateamiist@gmail.com</a>. We are here to help!
             </div>
         </div>
     </body>

@@ -12,6 +12,7 @@
     "dotenv": "^16.1.4",
     "gsap": "^3.12.1",
     "process": "^0.11.10",
+    "razorpay": "^2.9.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",

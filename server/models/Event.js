@@ -47,10 +47,10 @@ const eventSchema = new mongoose.Schema({
         ref: 'Category',
         required: true,
     },
-    participantEnrolled: [
+    EnrolledTeams: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'Participant',
             required: true,
         },
     ],

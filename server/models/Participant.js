@@ -44,6 +44,10 @@ const participantSchema = new mongoose.Schema({
     aadhar: {
       type: String,  
       required: true
+    },
+    paymentStatus:{
+      type:String,
+      enum:['Paid','NonPaid']
     }
   
   });

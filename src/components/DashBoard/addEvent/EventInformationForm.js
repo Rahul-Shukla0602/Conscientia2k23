@@ -8,9 +8,12 @@ import Upload from './Upload'
 import RequirementsField from './RequirementsField'
 import IconBtn from '../../common/IconBtn'
 import { setEvent, setStep } from '../../../slices/eventSlice'
+import {setLoading} from '../../../slices/profileSlice'
 import { MdNavigateNext } from "react-icons/md"
 import { editEventDetails } from '../../../services/operations/eventAPI'
 import { addEventDetails } from '../../../services/operations/eventAPI'
+
+
 const EventInformationForm = () => {
     const {
     register,
@@ -22,22 +25,25 @@ const EventInformationForm = () => {
     const dispatch = useDispatch()
     const { token } = useSelector((state) => state.auth)
     const { event, editEvent } = useSelector((state) => state.event)
-    const [loading, setLoading] = useState(false)
+    const {loading} = useSelector((state)=>state.profile);
     const [eventCategories, setEventCategories] = useState([])
-
+    console.log(eventCategories)
+    // useEffect(()=>{
+    //   console.log('HEL');
+       
+    // },[])
     useEffect(()=>{
         const getCategories = async ()=>{
             setLoading(true);
             const categories = await fetchEventCategories()
             console.log("categories: ",categories);
-            if (categories.length > 0) {
+            if (categories && categories.length > 0) {
                 console.log("categories", categories)
                 setEventCategories(categories)
             }
             setLoading(false)
         }
         if(editEvent){
-            // console.log("data populated", editCourse)
             setValue("eventTitle", event.eventName)
             setValue("eventShortDesc", event.eventDescription)
             setValue("eventePrice", event.price)
@@ -80,15 +86,8 @@ const EventInformationForm = () => {
         else
             return false
         }
-
-    //   handle next button click
   const onSubmit = async (data) => {
-    // console.log(data)
     if (editEvent) {
-      // const currentValues = getValues()
-      // console.log("changes after editing form values:", currentValues)
-      // console.log("now course:", course)
-      // console.log("Has Form Changed:", isFormUpdated())
       if (isFormUpdated()) {
         const currentValues = getValues()
         const formData = new FormData()
@@ -161,7 +160,6 @@ const EventInformationForm = () => {
     formData.append("category", data.eventCategory)
     formData.append("startDate", data.startDate)
     formData.append("endDate", data.endDate)
-    // formData.append("status", COURSE_STATUS.DRAFT)
     formData.append("instructions", JSON.stringify(data.eventRequirements))
     formData.append("thumbnail", data.eventImage)
     formData.append("BrochureLink", data.eventBrochureLink)
@@ -180,6 +178,7 @@ const EventInformationForm = () => {
   }
 
   return (
+    
         <form
         onSubmit={handleSubmit(onSubmit)}
         className='mb-[200px] flex flex-col justify-center gap-10 transform  translate-x-[-240px] lg:translate-x-[-40px] text-richblack-5 w-[350px] lg:w-[600px]
@@ -466,7 +465,8 @@ const EventInformationForm = () => {
                     </IconBtn>
             </div>
             
-         </form>
+        </form>
+        
   )
 }
 

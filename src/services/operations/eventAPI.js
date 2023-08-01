@@ -10,6 +10,8 @@ const {
   EDIT_EVENT_API,
   GET_ALL_ORGANIZER_EVENT_API,
   DELETE_EVENT_API,
+  REGISTER_TEAM_API,
+  EDIT_TEAM_API
   // GET_FULL_EVENT_DETAILS_AUTHENTICATED,
 } = eventEndpoints
 
@@ -98,8 +100,8 @@ export const editEventDetails = async (data, token) => {
     toast.success("Course Details Updated Successfully")
     result = response?.data?.data
   } catch (error) {
-    console.log("EDIT COURSE API ERROR............", error)
-    toast.error(error.message)
+    // console.log("EDIT COURSE API ERROR............", error)
+    // toast.error(error.message)
   }
   toast.dismiss(toastId)
   return result
@@ -150,3 +152,46 @@ export const deleteEvent = async (data, token) => {
   toast.dismiss(toastId)
 }
 
+
+export const registerTeam = async (data,token)=>{
+  let result = null
+  const toastId = toast.loading("Loading...")
+  try{
+    const response = await apiconnector("POST",REGISTER_TEAM_API,data,{
+       Authorization: `Bearer ${token}`,
+    })
+    console.log("REGISTER EVENT RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not HAVE TEAM")
+    }
+    toast.success("Registered")
+    // change it if needed
+    result = response?.data
+  } catch(error){
+    console.log("ERROR WHILE REGISTER............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+export const editTeamDetails = async(data,token)=>{
+  let result = null
+  const toastId = toast.loading("Loading...")
+  try {
+    const response = await apiconnector("POST", EDIT_TEAM_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    // console.log("EDIT TEAM API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Update TEAM Details")
+    }
+    toast.success("TEAM Details Updated Successfully")
+    result = response?.data
+  } catch (error) {
+    // console.log("EDIT TEAM API ERROR............", error)
+    // toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}

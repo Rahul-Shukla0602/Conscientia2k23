@@ -1,10 +1,10 @@
-exports.courseEnrollmentEmail = (courseName, name) => {
+exports.eventEnrollmentEmail = (eventName, name) => {
     return `<!DOCTYPE html>
     <html>
     
     <head>
         <meta charset="UTF-8">
-        <title>Course Registration Confirmation</title>
+        <title>EVENT Registration Confirmation</title>
         <style>
             body {
                 background-color: #ffffff;
@@ -67,6 +67,8 @@ exports.courseEnrollmentEmail = (courseName, name) => {
     
     <body>
         <div class="container">
+            <a href="https://www.conscientia.co.in/"><img class="logo" src="https://res.cloudinary.com/dwdwnfcnx/image/upload/v1690132004/Conscientiateam/g85golybsz6bfzowafyf.png"
+                alt="conscientia2k23"></a>
             <div class="message">Event Registration Confirmation</div>
             <div class="body">
                 <p>Dear ${name},</p>
@@ -74,12 +76,11 @@ exports.courseEnrollmentEmail = (courseName, name) => {
                     are excited to have you as a participant!</p>
                 <p>Please log in to your dashboard to access the details.
                 </p>
-                {% comment %} <a class="cta" href="https://studynotion-edtech-project.vercel.app/dashboard">Go to Dashboard</a> {% endcomment %}
+                <a class="cta" href="https://www.conscientia.co.in/dashboard">Go to Dashboard</a>
             </div>
             <div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-                    href="mailto:info@Conscientiateamiist@gmail.com">info@Conscientiateamiist@gmail.com</a>. We are here to help!</div>
+                    href="mailto:info@Conscientiateamiist@gmail.com">Conscientiateamiist@gmail.com</a>. We are here to help!</div>
         </div>
     </body>
-    
     </html>`;
   };

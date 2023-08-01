@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-// import { apiconnector } from '../services/apiconnector';
-// import { useSelector } from 'react-redux';
-// import {setLoading} from '../slices/profileSlice'
-// import {eventEndpoints} from '../services/apis'
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchEventDetails } from '../services/operations/eventAPI';
 import { AiOutlineLink } from 'react-icons/ai';
+import {setParticipant} from '../slices/participantSlice';
 
 const EventDetails = () => {
+    const dispatch = useDispatch()
     const {eventId} = useParams();
     const [eventData,seteventData] = useState('');
-    // const { loading } = useSelector((state) => state.profile)
-    // const options = Array.from({ length: eventData.maxParticipant }, (_, index) => index + 1);
+    const options = [];
     let linkTo = eventData.eventName === 'MIND-SPARK' ?
     'https://docs.google.com/forms/d/e/1FAIpQLSfhAaf1NgZoIRLvdgTPBYraURzEyX4fnFwER0FJ4TMzQuLX1g/viewform' 
-    : '#';
+    : `/event/registerEvent/${eventId}`;
     useEffect(() => {
-        // Calling fetchCourseDetails fucntion to fetch the details
          (async () => {
           try {
             const res = await fetchEventDetails(eventId)
@@ -28,6 +25,18 @@ const EventDetails = () => {
         })()
       }, [eventId])
       console.log(eventData)
+      for(let i=0;i<eventData.maxParticipant;i++){
+        options.push(i+1);
+      }
+      const {number} = useSelector((state)=>state.participant);
+      const handleChange = (e) => {
+        // setNum(parseInt(e.target.value, 10));
+        dispatch(setParticipant(parseInt(e.target.value, 10)));// Convert the selected value to an integer
+        console.log("Selected Number of Participants: ", number);
+      };
+      useEffect(() => {
+        console.log("Selected Number of Participants: ", number);
+      }, [number]);
   return (
     <div className=' bg-richblack-800 p-10 rounded-2xl text-richblack-200 w-[340px] lg:w-[600px] mx-auto transform translate-y-[120px]'>
         <div className=' flex flex-col gap-2'>
@@ -48,47 +57,55 @@ const EventDetails = () => {
                <AiOutlineLink/>
                Poster</Link>
             </div>
-            {/* <div className=' text-richblack-5'>
+            
+            <div  className=' text-richblack-5'>
               {
-                eventData.eventType === 'YES' ?(
-                  <select>
+                eventData.eventType === 'YES' && (
+                  <div className='flex gap-3'>
+                    <p className=' text-sm lg:text-lg'>Select Number Of Participants: </p>
+                    <select  className=' text-richblack-900 border-2 border-richblack-900 rounded-lg'
+                    onChange={handleChange}
+                    value={number}
+                    >
                       {
                         options.map((option,index)=>{
                           return(
-                            <options>{option}</options>
+                            <option key={index}>{option}</option>
                           )
                         })
                       }
                   </select>
+                  </div>
                 )
-                
-                :''
               }
-            </div> */}
-            {/* <div>
+            </div>
+            <div>
               {
-                eventData.eventName === 'MIND-SPARK'? (
-                  <Link
-                   className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg text-center  w-[340px] lg:w-[600px]'
-                  to='https://docs.google.com/forms/d/e/1FAIpQLSfhAaf1NgZoIRLvdgTPBYraURzEyX4fnFwER0FJ4TMzQuLX1g/viewform'
-                  >
-                    Register
-                  </Link>
-                )
-                :(
-                  <Link 
-                  // to="/event/registerEvent"
-                  className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg text-center w-full  w-[340px] lg:w-[600px]'
-                  >Register</Link>
-                )
+                eventId === "64c2a5a52f7a7a75db4c0d9b" ? (
+                <div class='flex flex-col md:flex-row text-sm gap-2'>
+                  <span class='text-sm'>UPDATE:</span>
+                  <p class='text-sm flex-shrink-0'>
+                    Registration is valid to 15 Aug and result will be declared on 15th-20th Aug.
+                  </p>
+                </div>
+
+                ):''
               }
-            </div> */}
-            <Link
+            </div>
+
+            
+            {/* <Link
              className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg text-center'
              to={linkTo}
             >
                Register
-            </Link>
+            </Link> */}
+            <div
+             className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg text-center'
+             to={linkTo}
+            >
+               Register
+            </div>
            
         </div>
     </div>

@@ -5,29 +5,46 @@ const Participant = require('../models/Participant')
 
 exports.registerEvent = async (req,res)=>{
     try{
-        const {eventId, name,college,collegeId,teamName,teamMembers,phone,email,aadhar} = req.body;
-        if(!eventId || !name || !college || !collegeId || !teamName || !teamMembers || !phone
+        const {name,college,collegeId,teamName,phone,email,aadhar} = req.body;
+        const eventId = req.body.eventId
+        const teamMembers = req.body.teamMembers ? JSON.parse(req.body.teamMembers) : [] ;
+        if(!eventId || !name || !college || !collegeId || !phone
             || !aadhar || !email){
-                console.log(phone);
             return res.status(404).json({
                 success:false,
                 message:"All fields are required"
             })
         }
+        const validatedTeamMembers = 
+        teamMembers.map(member => {
+            const {
+                name,
+                phone,
+                email,
+                aadhar
+            } = member;
+            return {
+                name: name ? name.trim() : '',
+                phone: phone ? phone.trim() : '',
+                email: email ? email.trim() : '',
+                aadhar: aadhar ? aadhar.trim() : ''
+            };
+        });
+        const ParticipantData = {
+            name: name.trim(),
+            college: college.trim(),
+            collegeId: collegeId.trim(),
+            teamName: teamName ? teamName.trim() : '',
+            teamMembers: validatedTeamMembers || [],
+            paymentStatus: "NonPaid",
+            phone: phone.trim(),
+            email: email.trim(),
+            aadhar: aadhar.trim(),
+        }
+        console.log("data dekhte hai",ParticipantData)
+        const ParticipantDetail = await Participant.create(ParticipantData)
 
-        const ParticipantDetail = await Participant.create({
-            name,
-            college,
-            collegeId,
-            teamName,
-            teamMembers,
-            phone,
-            email,
-            aadhar,
-        })
-        console.log("PARTICIPANT INPUT: ",Participant)
-
-        const UpdateEvent = await Event.findByIdAndUpdate(
+        await Event.findByIdAndUpdate(
             {_id:eventId},
             {
                 $push:{
@@ -35,20 +52,57 @@ exports.registerEvent = async (req,res)=>{
                 }
             },
             {new:true}
-        )
-        console.log("Upadted event: ",UpdateEvent);
+        ).populate({path:"TeamDetails"})
         return res.json({
             success:true,
             message:'Register Created Successfully',
-            data: Participant
+            data:ParticipantDetail
         })
 
     } catch(error){
-            console.log("problem in Registering event")
+            console.log("problem in Registering event",error)
             return res.status(500).json({
             success:false,
-            message:"Failed to create Event",
+            message:"Failed to add participants in the Event",
         });
+    }
+}
+
+exports.editTeamDetails = async (req,res)=>{
+    try{
+        const {TeamId,teamMembers,...updates} = req.body;
+        const parsedTeamMembers = JSON.parse(teamMembers || "[]");
+        if (!TeamId || !updates) {
+            return res.status(404).json({
+                success:false,
+                message: "TeamId and updates object are required"
+        })}
+        const Team = await Participant.findById(TeamId);
+        Team.teamMembers = parsedTeamMembers
+        if (!Team) {
+            return res.status(404).json({ success: false, message: "Team not found" });
+        }
+        const allowedFields = ["name", "college", "collegeId", "teamName", "teamMembers",
+        "paymentStatus", "phone", "email", "aadhar"];
+        for (const key in updates) {
+            if (updates.hasOwnProperty(key) && allowedFields.includes(key)) {
+                Team[key] = updates[key]
+            }
+        }
+
+        const updatedTeam = await Team.save();  
+        res.json({
+        success: true,
+        message: "Team updated successfully",
+        data: updatedTeam,
+        })
+    } catch(error){
+        console.error("Error updating team:", error.message);
+        res.status(500).json({
+            success: false,
+            message: "NOT UPDATED",
+            // error: error.message,
+        })
     }
 }
 

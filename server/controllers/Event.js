@@ -119,7 +119,7 @@ exports.getAllEvents = async (req,res)=>{
             price:true,
             tag:true,
             category:true,
-            participantEnrolled:true,
+            EnrolledTeams:true,
             instructions:true,
             status:true,
             startDate:true,
@@ -164,8 +164,6 @@ exports.getEventByID = async (req,res)=>{
             }
         ).populate(
             "category"
-        ).populate(
-            'participantEnrolled'
         ).exec();
         if(!eventDetail){
             return res.status(404).json({
@@ -281,8 +279,7 @@ exports.deleteEvent = async (req, res) => {
       return res.status(404).json({ message: "Event not found" })
     }
 
-       const studentEnrolled = event.participantEnrolled
-       console.log(studentEnrolled)
+       const studentEnrolled = event.EnrolledTeams
        for (const studentId of studentEnrolled){
          await User.findByIdAndUpdate(studentId,{
            $pull: { events: eventId },
