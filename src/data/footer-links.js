@@ -44,11 +44,11 @@ export const FooterLinks = [
         title: 'Privacy policy',
         path: '/privacy'
     },
-    // {
-    //     id:10,
-    //     title: 'Shipping policy',
-    //     path: '/shipping'
-    // },
+    {
+        id:10,
+        title: 'Shipping policy',
+        path: '/shipping'
+    },
     {
         id:11,
         title: 'Cancellation and refund',
