@@ -4,6 +4,7 @@ const app =express();
 const userRoutes = require("./routes/User");
 const eventRoutes = require('./routes/Event')
 const paymentRoutes = require('./routes/Payments')
+const merchPayment = require('./routes/MerchPayment')
 
 
 const database = require("./config/database");
@@ -42,6 +43,7 @@ cloudinaryconnect();
 app.use("/api/v1/auth", userRoutes);
 app.use('/api/v1/event',eventRoutes);
 app.use('/api/v1/payment',paymentRoutes)
+app.use('/api/v1/merchpayment', merchPayment);
 //def route
 app.get("/", (req, res) => {
 	return res.json({

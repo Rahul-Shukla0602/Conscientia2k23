@@ -66,8 +66,8 @@ exports.otpTemplate = (otp) => {
 	
 	<body>
 		<div class="container">
-			<a href="https://http://localhost:3000"><img class="logo" src="https://res.cloudinary.com/dwdwnfcnx/image/upload/v1690132004/Conscientiateam/g85golybsz6bfzowafyf.png"
-				alt="conscientia2k23"></a>
+			<a href="https://www.conscientia.co.in/"><img class="logo" src="https://res.cloudinary.com/dwdwnfcnx/image/upload/v1690132004/Conscientiateam/g85golybsz6bfzowafyf.png"
+                alt="conscientia2k23"></a>
 			<div class="message">OTP Verification Email</div>
 			<div class="body">
 				<p>Dear User,</p>
@@ -78,7 +78,7 @@ exports.otpTemplate = (otp) => {
 				Once your account is verified, you will have access to our platform and its features.</p>
 			</div>
 			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-					href="mailto:info@Conscientiateamiist@gmail.com">info@Conscientiateamiist@gmail.com</a>. We are here to help!</div>
+					href="mailto:info@Conscientiateamiist@gmail.com">Conscientiateamiist@gmail.com</a>. We are here to help!</div>
 		</div>
 	</body>
 	

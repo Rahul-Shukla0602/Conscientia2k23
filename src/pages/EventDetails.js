@@ -94,18 +94,18 @@ const EventDetails = () => {
             </div>
 
             
-            {/* <Link
+            <Link
              className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg text-center'
              to={linkTo}
             >
                Register
-            </Link> */}
-            <div
+            </Link>
+            {/* <div
              className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg text-center'
              to={linkTo}
             >
                Register
-            </div>
+            </div> */}
            
         </div>
     </div>

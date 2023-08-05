@@ -27,8 +27,12 @@ import EventDetails from "./pages/EventDetails";
 // import  RegistrationForm  from "./components/RegisterEvent/index";
 // import FinalEvent from "./components/RegisterEvent/FinalEvent";
 import RenderRegister from "./components/RegisterEvent/RenderRegister";
-// import Merchandise from "./pages/Merchandise";
-// import Cart from "./pages/Cart";
+import Merchandise from "./pages/Merchandise";
+import Cart from "./pages/Cart";
+import TermsAndCondition from "./pages/TermsAndCondition";
+import Privacypolicy from "./pages/Privacypolicy";
+import Shippingpolicy from "./pages/Shippingpolicy";
+import CancellationAndRefund from "./pages/CancellationAndRefund";
 
 function App() {
   const [preloader, setPreloader] = useState("visible");
@@ -71,10 +75,14 @@ function App() {
               <Route path="/contactus" element={<ContactUs/>}></Route>
               <Route path="*" element={<Error/>}></Route>
               <Route path="/events/:eventId" element={<EventDetails/>}/>
+              <Route path="/terms" element={<TermsAndCondition/>}/>
+              <Route path="/privacy" element={<Privacypolicy/>}/>
+              <Route path="/shipping" element={<Shippingpolicy/>}/>
+              <Route path="/cancellation" element={<CancellationAndRefund/>}/>
               {/* <Route path="/event/registerEvent/:eventId" element={<RegistrationForm/>}/> */}
               <Route path="/event/registerEvent/:eventId" element={<RenderRegister/>}/> 
-              {/* <Route path="/merchandise" element={<Merchandise/>}></Route> */}
-              {/* <Route path="/cart" element={<Cart/>}></Route> */}
+              <Route path="/merchandise" element={<Merchandise/>}></Route>
+              <Route path="/cart" element={<Cart/>}></Route>
               {/* <Route path="/event" element={<TestingSchool/>}></Route> */}
               <Route element={<DashBoard/>}>
                               <Route path="/dashboard/my-profile" element={<MyProfile/>}/>      

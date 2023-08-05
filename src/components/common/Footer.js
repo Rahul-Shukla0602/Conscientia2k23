@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="flex items-center">
           <img src={logo} alt="" className="w-24" />
           <div className="ml-4 md:ml-8 hidden sm:block">
-            <div className="grid grid-cols-2 mt-2 gap-4">
+            <div className="grid grid-cols-3 mt-2 gap-4">
               {FooterLinks.map((ele) => (
                 <Link
                   key={ele.id}
@@ -30,16 +30,16 @@ const Footer = () => {
         <div className="mt-8 md:mt-0">
           <p className="text-lg font-semibold">Follow Us!</p>
           <div className="flex mt-2 ">
-            <Link to="" className="text-gray-300 hover:text-yellow-200 mr-4">
+            <Link to=" https://facebook.com/Conscientia.iist/" className="text-gray-300 hover:text-yellow-200 mr-4">
               <FaFacebook />
             </Link>
-            <Link to="" className="text-gray-300 hover:text-yellow-200 mr-4">
+            <Link to="https://linkedin.com/in/conscientia-iist" className="text-gray-300 hover:text-yellow-200 mr-4">
               <FaLinkedin />
             </Link>
-            <Link to="" className="text-gray-300 hover:text-yellow-200 mr-4">
+            <Link to="https://instagram.com/conscientia.iist?igshid=YmMyMTA2M2Y=" className="text-gray-300 hover:text-yellow-200 mr-4">
               <FaInstagram />
             </Link>
-            <Link to="" className="text-gray-300 hover:text-yellow-200">
+            <Link to="https://youtube.com/channel/UCx47j3_OXElUMTBbMe-jYjw" className="text-gray-300 hover:text-yellow-200">
               <FaYoutube />
             </Link>
           </div>

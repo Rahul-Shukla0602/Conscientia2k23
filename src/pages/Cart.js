@@ -1,6 +1,5 @@
 import React from 'react'
 import './Cart.css'
-// import 'boxicons'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {AiOutlineMinus} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,6 +9,7 @@ import {
 import Footer from '../components/common/Footer'
 // import { setLoading } from '../slices/authSlice'
 // import { toast } from "react-hot-toast"
+
 
 const Cart = ()=>{
 
@@ -50,6 +50,7 @@ const Cart = ()=>{
     //                     qty: cartitems.totalitems
     //                 })
     //             })
+    //             // console.log("RESPONSE: ",response);
     //             let resjson = await response.json()
     
     //             const dataobj = JSON.parse(resjson);
@@ -65,7 +66,7 @@ const Cart = ()=>{
                 
     //             console.log("script loaded")
     //             const options = {
-    //                 "key": 'rzp_test_CAP3wBYkzAJCUn', // Enter the Key ID generated from the Dashboard
+    //                 "key": process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
     //                 "amount": dataobj.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     //                 "currency": "INR",
     //                 "name": "Conscientia 2k23",
@@ -117,7 +118,7 @@ const Cart = ()=>{
     
     // const afterPayment = async (status, mongoid, res) => {
     //     const toastID = toast.loading('Loading...')
-    //     let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/verify`, {
+    //     let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/verify`,{
     //         method: 'POST',
     //         mode: 'cors',
     //         headers: {
@@ -127,7 +128,8 @@ const Cart = ()=>{
     //             orderstatus: status,
     //             mongoid: mongoid,
     //             response: res,
-    //             userdata: user
+    //             userdata: user,
+    //             paymentreport: res
     //         })
     //     })
     //     let resjson = await response.json()
@@ -159,7 +161,7 @@ const Cart = ()=>{
                                         <img src={value.img} alt='cartitem'></img>
                                         <div className='cart_items_text'>
                                             <div class="w-full pr-10 py-6 mb-6 md:mb-0">
-                                                <h2 class="text-sm title-font text-gray-500 tracking-widest">{value.brand}</h2>
+                                                {/* <h2 class="text-sm title-font text-gray-500 tracking-widest">{value.brand}</h2> */}
                                                 <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{value.title}</h1>
                                                 <div class="flex border-t border-gray-200 py-2">
                                                     <span class="text-gray-500">Color</span>
@@ -205,7 +207,7 @@ const Cart = ()=>{
                         <div className='cart_total_card bg-richblack-800 text-richblack-100 border-[1px] border-richblack-200'>
                             <span>Total Items : {cartitems.totalitems}</span>
                             <span>₹{cartitems.totalamount}</span>
-                            <button 
+                            <button
                             className='bg-yellow-200 rounded-xl text-richblack-800 border-[1px] border-richblack-200'
                             // onClick={checkoutbtn} 
                             id='rzp'><span>Checkout</span></button>

@@ -6,8 +6,8 @@ import {setStep} from '../../slices/eventSlice'
 import { useEffect,useState} from "react";
 import { toast } from "react-hot-toast"
 import {setTeam,setEditTeam} from '../../slices/participantSlice'
-import IconBtn from "../common/IconBtn";
-import { MdNavigateNext } from "react-icons/md"
+// import IconBtn from "../common/IconBtn";
+// import { MdNavigateNext } from "react-icons/md"
 
 
 export default function RegistrationForm() {
@@ -411,14 +411,14 @@ export default function RegistrationForm() {
                           Continue Wihout Saving
                       </button>
                       )}
-                      <IconBtn
+                      {/* <IconBtn
                       type={'submit'}
                       onClick={() => dispatch(setStep(2))}
                       disabled={loading}
                       text={!editTeam ? "Next" : "Save Changes"}
                       >
                       <MdNavigateNext/>
-                      </IconBtn>
+                      </IconBtn> */}
             </div>
     </form>
     </div>

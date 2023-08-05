@@ -77,12 +77,12 @@
 }
 #cart_total .cart_total_card button:hover{
     margin: 1em 6em;
-    background: rgb(117, 87, 87);
-    border: 2px solid #c895c8;
+    /* background: rgb(117, 87, 87); */
+    /* border: 2px solid #c895c8; */
     padding: 0.2em;
     font-size: 0.7em;
     font-weight: 200;
-    border-radius: 0.3em;
+    /* border-radius: 0.3em; */
     display: flex;
     align-items: center;
     justify-content: center;

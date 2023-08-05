@@ -27,7 +27,7 @@ exports.resetPasswordToken = async (req,res)=>{
         });
         console.log("updatedDetails",updatedDetails);
         //create url
-        const url = `http://localhost:3000/update-password/${token}`;
+        const url = `https://www.conscientia.co.in/update-password/${token}`;
         //send email containing url
         await mailSender(email,"PASSWORD reset link",`PASSWORD RESET LINK: ${url}`);
         //return response

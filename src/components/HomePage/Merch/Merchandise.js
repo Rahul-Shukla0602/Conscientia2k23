@@ -1,6 +1,7 @@
 import React from 'react';
 // import merch1 from '../../../assets/merchImage/merch.png';
 import OfficialMerch from '../../../assets/OfficialMerch.mp4'
+import { Link } from 'react-router-dom';
 
 const Merchandise = () => {
   return (
@@ -46,9 +47,11 @@ const Merchandise = () => {
             fellow tech enthusiasts - order yours now!
           </p>
           <div>
-            <button className="bg-yellow-300 text-black font-semibold px-4 lg:px-9 py-2 rounded-lg">
+            <Link
+            to='/merchandise'
+             className="bg-yellow-300 text-black font-semibold px-4 lg:px-9 py-2 rounded-lg">
               Buy Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>

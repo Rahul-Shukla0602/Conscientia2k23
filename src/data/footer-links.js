@@ -34,6 +34,28 @@ export const FooterLinks = [
         title: 'About Us',
         path: '/about'
     },
+    {
+        id:8,
+        title: 'Terms and conditions',
+        path: '/terms'
+    },
+    {
+        id:9,
+        title: 'Privacy policy',
+        path: '/privacy'
+    },
+    // {
+    //     id:10,
+    //     title: 'Shipping policy',
+    //     path: '/shipping'
+    // },
+    {
+        id:11,
+        title: 'Cancellation and refund',
+        path: '/cancellation'
+    },
+
+
 
     
 ]
