@@ -30,7 +30,7 @@ const Footer = () => {
         <div className="mt-8 md:mt-0">
           <p className="text-lg font-semibold">Follow Us!</p>
           <div className="flex mt-2 ">
-            <Link to=" https://facebook.com/Conscientia.iist/" className="text-gray-300 hover:text-yellow-200 mr-4">
+            <Link to="https://facebook.com/Conscientia.iist" className="text-gray-300 hover:text-yellow-200 mr-4">
               <FaFacebook />
             </Link>
             <Link to="https://linkedin.com/in/conscientia-iist" className="text-gray-300 hover:text-yellow-200 mr-4">

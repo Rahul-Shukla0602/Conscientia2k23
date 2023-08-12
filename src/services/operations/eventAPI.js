@@ -58,7 +58,7 @@ export const fetchEventCategories = async () => {
   return result
 }
 
-// add the course details
+// add the event details
 export const addEventDetails = async (data, token) => {
   let result = null
   const toastId = toast.loading("Loading...")
@@ -72,11 +72,11 @@ export const addEventDetails = async (data, token) => {
     if (!response?.data?.success) {
       throw new Error("Could Not Add Course Details")
     }
-    toast.success("Course Details Added Successfully")
+    toast.success("Event Details Added Successfully")
     result = response?.data?.data
     console.log("EVENT@2: ",result)
   } catch (error) {
-    console.log("CREATE COURSE API ERROR............", error)
+    console.log("CREATE EVENT API ERROR............", error)
     toast.error(error.message)
   }
   toast.dismiss(toastId)
@@ -97,7 +97,7 @@ export const editEventDetails = async (data, token) => {
     if (!response?.data?.success) {
       throw new Error("Could Not Update Course Details")
     }
-    toast.success("Course Details Updated Successfully")
+    toast.success("event Details Updated Successfully")
     result = response?.data?.data
   } catch (error) {
     // console.log("EDIT COURSE API ERROR............", error)

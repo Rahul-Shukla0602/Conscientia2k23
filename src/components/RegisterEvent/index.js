@@ -6,8 +6,8 @@ import {setStep} from '../../slices/eventSlice'
 import { useEffect,useState} from "react";
 import { toast } from "react-hot-toast"
 import {setTeam,setEditTeam} from '../../slices/participantSlice'
-// import IconBtn from "../common/IconBtn";
-// import { MdNavigateNext } from "react-icons/md"
+import IconBtn from "../common/IconBtn";
+import { MdNavigateNext } from "react-icons/md"
 
 
 export default function RegistrationForm() {
@@ -44,7 +44,9 @@ export default function RegistrationForm() {
 
   const isFormUpdated = () => {
     const currentValues = getValues()
-    if(Array.isArray(Team.teamMembers)){
+    if(
+     Team && Array.isArray(Team.teamMembers)
+    ){
       if ( 
         currentValues.name !== Team.name ||
         currentValues.college !== Team.college ||
@@ -61,8 +63,11 @@ export default function RegistrationForm() {
         return false
     }
 
+    
 
   const onSubmit = async (data) => {
+    console.log("BB: ",isFormUpdated())
+    console.log("AA: ",editTeam)
     if(editTeam){
       if(isFormUpdated()){
         const currentValues = getValues()
@@ -89,20 +94,20 @@ export default function RegistrationForm() {
         if(currentValues.aadhar !== Team.aadhar){
           formData.append("aadhar", data.aadhar)
         }
-        if(Array.isArray(Team.teamMembers)){
-          if(currentValues.teamMembers !== Team.teamMembers){
-            const teamMembersData = data.teamMembers.map((member) => ({
-              name: member.name,
-              phone: member.phone,
-              email: member.email,
-              aadhar: member.aadhar,
-            }));
-            console.log("TEAM MEMBERL: ",teamMembersData)
-            formData.append("teamMembers", JSON.stringify(teamMembersData));
-          }
-        }else{
-          formData.append("teamMembers", "[]");
-        }
+        // if(Team?.teamMembers){
+        //   if(Array.isArray(Team.teamMembers)){
+        //       const teamMembersData = data.teamMembers.map((member) => ({
+        //         name: member.name,
+        //         phone: member.phone,
+        //         email: member.email,
+        //         aadhar: member.aadhar,
+        //       }));
+        //       console.log("TEAM MEMBERL: ",teamMembersData)
+        //       formData.append("teamMembers", JSON.stringify(teamMembersData));
+        //   }else{
+        //     formData.append("teamMembers", "[]");
+        //   }
+        // }
         setLoading(true)
         const result = await editTeamDetails(formData, token)
         setLoading(false)
@@ -304,7 +309,7 @@ export default function RegistrationForm() {
           )}
       </div>
       
-      {number!==1   &&(<div className="mb-4">
+      {number!==1   && (<div className="mb-4">
         <div className="space-y-4">
           {Array.from({ length:number-1}).map((_, index) => (
             <div key={index}>
@@ -411,14 +416,14 @@ export default function RegistrationForm() {
                           Continue Wihout Saving
                       </button>
                       )}
-                      {/* <IconBtn
+                      <IconBtn
                       type={'submit'}
                       onClick={() => dispatch(setStep(2))}
                       disabled={loading}
                       text={!editTeam ? "Next" : "Save Changes"}
                       >
                       <MdNavigateNext/>
-                      </IconBtn> */}
+                      </IconBtn>
             </div>
     </form>
     </div>

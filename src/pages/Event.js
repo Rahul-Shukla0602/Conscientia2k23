@@ -11,7 +11,7 @@ import EventCard from '../components/EventCard'
 
 const Event = () => {
   const { loading } = useSelector((state) => state.profile)
-  const [ catalogName,setcatalogName]  = useState("Workshops");
+  const [ catalogName,setcatalogName]  = useState("Events");
   // const { token } = useSelector((state) => state.auth);
   // const { user } = useSelector((state) => state.profile);
   // const location = useLocation();
@@ -28,7 +28,8 @@ const Event = () => {
       try {
         const result = await apiconnector('GET', categories.CATEGORIES_API);
         console.log("res---: ",result)
-        setSubLinks(result.data.allCategory);
+        setSubLinks((result.data.allCategory).reverse());
+        console.log("sun: ",sublinks);
         const category_id=result?.data?.allCategory?.filter((ct) => ct.name === catalogName)[0]._id;
         // console.log("DEKH to: ", category_id)
         setCategoryId(category_id);
@@ -40,6 +41,7 @@ const Event = () => {
     };
     fetchSubLinks()
     setLoading(false)
+     // eslint-disable-next-line
   }, [catalogName]);
 
   // const matchRoute = (route) => {

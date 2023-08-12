@@ -40,6 +40,7 @@ exports.registerEvent = async (req,res)=>{
             phone: phone.trim(),
             email: email.trim(),
             aadhar: aadhar.trim(),
+            paymentID: ''
         }
         console.log("data dekhte hai",ParticipantData)
         const ParticipantDetail = await Participant.create(ParticipantData)
@@ -71,6 +72,7 @@ exports.registerEvent = async (req,res)=>{
 exports.editTeamDetails = async (req,res)=>{
     try{
         const {TeamId,teamMembers,...updates} = req.body;
+        console.log("DD: ",req.body)
         const parsedTeamMembers = JSON.parse(teamMembers || "[]");
         if (!TeamId || !updates) {
             return res.status(404).json({
@@ -82,7 +84,9 @@ exports.editTeamDetails = async (req,res)=>{
         if (!Team) {
             return res.status(404).json({ success: false, message: "Team not found" });
         }
-        const allowedFields = ["name", "college", "collegeId", "teamName", "teamMembers",
+        Team.paymentID = req.body.paymentID;
+        await Team.save();
+        const allowedFields = ["name", "college", "collegeId", "teamName", "teamMembers","paymentID",
         "paymentStatus", "phone", "email", "aadhar"];
         for (const key in updates) {
             if (updates.hasOwnProperty(key) && allowedFields.includes(key)) {
@@ -91,6 +95,7 @@ exports.editTeamDetails = async (req,res)=>{
         }
 
         const updatedTeam = await Team.save();  
+        console.log("u:::",updatedTeam);
         res.json({
         success: true,
         message: "Team updated successfully",

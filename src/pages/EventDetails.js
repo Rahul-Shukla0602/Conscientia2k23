@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchEventDetails } from '../services/operations/eventAPI';
 import { AiOutlineLink } from 'react-icons/ai';
 import {setParticipant} from '../slices/participantSlice';
+import { setEvent } from '../slices/eventSlice';
 
 const EventDetails = () => {
+    const {event} = useSelector((state)=>state.event);
     const dispatch = useDispatch()
     const {eventId} = useParams();
     const [eventData,seteventData] = useState('');
@@ -19,10 +21,13 @@ const EventDetails = () => {
             const res = await fetchEventDetails(eventId)
             console.log("event details res: ", res)
             seteventData(res.data)
+            dispatch(setEvent(res.data));
+            console.log("events: ",event);
           } catch (error) {
             console.log("Could not fetch Event Details")
           }
         })()
+        // eslint-disable-next-line
       }, [eventId])
       console.log(eventData)
       for(let i=0;i<eventData.maxParticipant;i++){
@@ -43,6 +48,14 @@ const EventDetails = () => {
             <img src={eventData.thumbnail} alt='' className=' rounded-3xl lg:w-[700px] w-[300px] lg:h-[400px] h-[350px]'/>
             <p className=' text-richblack-5'>{eventData.eventName}</p>
             <p>{eventData.eventDescription}</p>
+
+            {/* Disclaimer text */}
+            <p>
+              <span className=' text-richblack-5'>Disclaimer: </span>Please note that in the event if the minimum required number of participants
+              is not met, we reserve the right to cancel the event, and registered participants will be duly
+              informed and provided with a full refund of their registration fees.
+            </p>
+            
             <div className='flex gap-4'>
                 <p className=' text-richblack-5'>{
                   eventData.price !== 0 ?<p>Price: {eventData.price}</p> :""
@@ -80,7 +93,7 @@ const EventDetails = () => {
               }
             </div>
             <div>
-              {
+            {
                 eventId === "64c2a5a52f7a7a75db4c0d9b" ? (
                 <div class='flex flex-col md:flex-row text-sm gap-2'>
                   <span class='text-sm'>UPDATE:</span>
@@ -90,7 +103,7 @@ const EventDetails = () => {
                 </div>
 
                 ):''
-              }
+            }
             </div>
 
             

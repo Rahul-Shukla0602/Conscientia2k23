@@ -48,6 +48,10 @@ const participantSchema = new mongoose.Schema({
     paymentStatus:{
       type:String,
       enum:['Paid','NonPaid']
+    },
+    paymentID:{
+      type:String,
+      require:true
     }
   
   });
