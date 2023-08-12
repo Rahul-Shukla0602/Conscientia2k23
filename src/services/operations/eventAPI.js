@@ -160,7 +160,7 @@ export const registerTeam = async (data,token)=>{
     const response = await apiconnector("POST",REGISTER_TEAM_API,data,{
        Authorization: `Bearer ${token}`,
     })
-    console.log("REGISTER EVENT RESPONSE............", response)
+    console.log("REGISTERATION EVENT RESPONSE............", response)
     if (!response?.data?.success) {
       throw new Error("Could Not HAVE TEAM")
     }

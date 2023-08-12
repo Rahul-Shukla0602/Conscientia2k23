@@ -7,7 +7,9 @@ exports.registerEvent = async (req,res)=>{
     try{
         const {name,college,collegeId,teamName,phone,email,aadhar} = req.body;
         const eventId = req.body.eventId
-        const teamMembers = req.body.teamMembers ? JSON.parse(req.body.teamMembers) : [] ;
+        // const teamMembers = req.body.teamMembers ? JSON.parse(req.body.teamMembers) : [] ;
+        // const teamMembers = JSON.parse(req.body.teamMembers)|| req.body.teamMembers;
+        const teamMembers = req.body.teamMembers;
         if(!eventId || !name || !college || !collegeId || !phone
             || !aadhar || !email){
             return res.status(404).json({

@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {setStep} from '../../slices/eventSlice'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import { 
-  // resetEventState,
-   setEditTeam } from '../../slices/participantSlice'
+import { resetEventState,setEditTeam } from '../../slices/participantSlice'
 import {setLoading} from '../../slices/profileSlice'
 import { editTeamDetails } from '../../services/operations/eventAPI'
 // import { buyEvent } from '../../services/operations/userFeatureAPI'
@@ -92,7 +90,7 @@ const Register = () => {
     if(token){
        handleEventRegister(data);
     }
-    // dispatch(resetEventState())
+    dispatch(resetEventState())
   }
   return (
     <>
