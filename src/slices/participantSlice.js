@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const participantSlice = createSlice({
     name: 'participant',
     initialState: {
-        Team :null,
+        Team :localStorage.getItem('Team')?JSON.parse(localStorage.getItem('Team')):null,
         editTeam:false,
         number: localStorage.getItem('number')?JSON.parse(localStorage.getItem('number')):0,
     },

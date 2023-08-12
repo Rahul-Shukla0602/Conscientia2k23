@@ -11,8 +11,9 @@ import { MdNavigateNext } from "react-icons/md"
 
 
 export default function RegistrationForm() {
+
   const dispatch = useDispatch();
-  const { register, handleSubmit,formState: { errors }, setValue,getValues} = useForm();
+  const {register, handleSubmit,formState: { errors }, setValue,getValues} = useForm();
   const {eventId} = useParams()
   const { Team, editTeam } = useSelector((state) => state.participant);
   const [loading, setLoading] = useState(false)
@@ -38,9 +39,10 @@ export default function RegistrationForm() {
         });  
        }
     }
-    // console.log("TE ",Team) 
+    console.log("TE ",Team) 
     // eslint-disable-next-line
   },[editTeam,Team]);
+
 
   const isFormUpdated = () => {
     const currentValues = getValues()
@@ -66,8 +68,11 @@ export default function RegistrationForm() {
     
 
   const onSubmit = async (data) => {
+
     console.log("BB: ",isFormUpdated())
     console.log("AA: ",editTeam)
+
+    // upadte
     if(editTeam){
       if(isFormUpdated()){
         const currentValues = getValues()
@@ -108,6 +113,7 @@ export default function RegistrationForm() {
         //     formData.append("teamMembers", "[]");
         //   }
         // }
+
         setLoading(true)
         const result = await editTeamDetails(formData, token)
         setLoading(false)
@@ -119,8 +125,9 @@ export default function RegistrationForm() {
       else {
         toast.error("No changes made to the form")
       }
-    }
-    else {
+    } else {   
+
+    // first time registeration
     const formData = new FormData();
     formData.append("eventId",eventId)
     formData.append("name", data.name);
@@ -147,9 +154,9 @@ export default function RegistrationForm() {
     setLoading(true)
     const res = await registerTeam(formData,token);
       if(res.success){
-        console.log("RESPONE___: ",res.data)
+        console.log("RESPONE: ",res.data) 
         dispatch(setStep(2));
-        dispatch(setTeam(res.data))
+        dispatch(setTeam(res.data)) 
         console.log("DATA of team: ",Team)
         // toast.success("Team registered successfully");
         setEditTeam(true);
