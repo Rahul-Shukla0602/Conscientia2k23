@@ -18,7 +18,7 @@ const Shippingpolicy = () => {
         <p>
           This Shipping & Delivery Policy is part of our{" "}
           <b>Terms and Conditions</b> ("Terms") and should be therefore read
-          alongside our main Terms: ___. Please carefully review our Shipping &
+          alongside our main Terms. Please carefully review our Shipping &
           Delivery Policy when purchasing our products. This policy will apply
           to any order you place with us.
         </p>
@@ -28,8 +28,17 @@ const Shippingpolicy = () => {
         <h3 className="text-lg font-bold">In-Store Pickup</h3>
         <br />
         <p>
-          In-store pickup is available for <b>All purchases</b>. Pickups are
-          available During Conscientia 2023.
+          In-store pickups are available during Conscientia 2023 i.e. from 22nd September 2023 to 25th September 2023.
+          You can visit the merchandise stall in the campus and request your pre-ordered merchandise. If you are a 
+          participant of events or workshops, this option is best for you.
+        </p>
+        <br />
+        <h3 className="text-lg font-bold">Home Delivery</h3>
+        <br />
+        <p>
+        You can also order the merch and recieve it at the comfort of your home. We will deliver the orders through
+        Indian Post. The user would have to pay a nominal amount of Rs. 100 as shipment charge. You would be recieve
+        the order within a 7-10 days of the order. We would inform the user after the shipment is booked.
         </p>
         <br />
         <h3 className="text-lg font-bold">Shipping Fees</h3>
@@ -47,7 +56,7 @@ const Shippingpolicy = () => {
           <tbody>
             <tr>
               <td className="border border-white p-2">Indian Post</td>
-              <td className="border border-white p-2">Based on weight</td>
+              <td className="border border-white p-2">Rs. 100 for all the orders.</td>
             </tr>
           </tbody>
         </table>
@@ -64,8 +73,7 @@ const Shippingpolicy = () => {
         <h2 className="text-xl font-bold">QUESTIONS ABOUT RETURNS?</h2>
         <br />
         <p>
-          If you have questions about returns, please review our Return Policy:
-          ___.
+          If you have questions about returns, please review our Return Policy.
         </p>
         <br />
         <h2 className="text-xl font-bold">HOW CAN YOU CONTACT US ABOUT THIS POLICY?</h2>
@@ -75,6 +83,7 @@ const Shippingpolicy = () => {
         </p>
         <ul className="list-disc pl-4">
           <li>Email: conscientiateamiist@gmail.com</li>
+          <li>Contact: 9083722796/7281015320</li>
         </ul>
       </div>
     </div>

@@ -82,7 +82,7 @@ const SignupForm = () => {
                />
             </label>
             <label className='flex flex-col gap-2'>
-               <p  className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>last Name<sup className="text-pink-200">*</sup></p>
+               <p  className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>Last Name<sup className="text-pink-200">*</sup></p>
                <input
                 required
                 type='text'

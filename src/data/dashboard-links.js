@@ -34,18 +34,18 @@ export const sidebarLinks = [
     type: ACCOUNT_TYPE.PARTICIPANT,
     icon: "VscMortarBoard",
   },
-  {
-    id: 6,
-    name: "Purchase History",
-    path: "/dashboard/purchase-history",
-    type: ACCOUNT_TYPE.PARTICIPANT,
-    icon: "VscHistory",
-  },
-  {
-    id: 7,
-    name: "Your Cart",
-    path: "/dashboard/cart",
-    type: ACCOUNT_TYPE.PARTICIPANT,
-    icon: "VscHistory",
-  },
+  // {
+  //   id: 6,
+  //   name: "Purchase History",
+  //   path: "/dashboard/purchase-history",
+  //   type: ACCOUNT_TYPE.PARTICIPANT,
+  //   icon: "VscHistory",
+  // },
+  // {
+  //   id: 7,
+  //   name: "Your Cart",
+  //   path: "/dashboard/cart",
+  //   type: ACCOUNT_TYPE.PARTICIPANT,
+  //   icon: "VscHistory",
+  // },
 ];

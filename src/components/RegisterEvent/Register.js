@@ -5,7 +5,7 @@ import {setStep} from '../../slices/eventSlice'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { 
-  // resetEventState,
+  resetEventState,
   setEditTeam } from '../../slices/participantSlice'
 import {setLoading} from '../../slices/profileSlice'
 import { editTeamDetails } from '../../services/operations/eventAPI'
@@ -45,7 +45,7 @@ const Register = () => {
   // }, [])
 
   const goToEvent = () => {
-    // dispatch(resetEventState())
+    dispatch(resetEventState())
     navigate("/dashboard/my-profile")
     dispatch(setStep(1));
   }
@@ -92,7 +92,7 @@ const Register = () => {
     if(token){
        handleEventRegister(data);
     }
-    // dispatch(resetEventState())
+    dispatch(resetEventState())
   }
   return (
     <>
@@ -132,14 +132,15 @@ const Register = () => {
         {/*  */}
 
         <img src={pay_qr} alt='QR' className=' rounded-lg'/>
-        <p className=' text-richblack-25 mt-[10px]'>
+        <p className=' text-richblack-5 text-2xl mt-[20px] text-center'><span>UPI ID:{" "}</span>9978944804@paytm</p>
+        <p className=' text-richblack-25 mt-[10px]  text-xl '>
           Pay {" "} 
-          <span className=' text-yellow-5'>{eventId==='64c4ebcfb3e4407fb610c3b4'? event.fee + (number - 1)*1000:event.fee}</span>
+          <span className=' text-yellow-5'>{eventId==='64c4ebcfb3e4407fb610c3b4'? (event.fee + (number)*1000):event.fee}</span>
           {" "}INR in given QR code.
         </p>
 
         <label className=' form-style text-richblack-5'>
-          <p>Payment ID: </p>
+          <p className=' text-richblack-25 mt-[10px]  text-xl '>Payment ID: </p>
           <input type='text'
            id="paymentID"
           {...register("paymentID")}
