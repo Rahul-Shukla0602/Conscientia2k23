@@ -99,20 +99,20 @@ export default function RegistrationForm() {
         if(currentValues.aadhar !== Team.aadhar){
           formData.append("aadhar", data.aadhar)
         }
-        // if(Team?.teamMembers){
-        //   if(Array.isArray(Team.teamMembers)){
-        //       const teamMembersData = data.teamMembers.map((member) => ({
-        //         name: member.name,
-        //         phone: member.phone,
-        //         email: member.email,
-        //         aadhar: member.aadhar,
-        //       }));
-        //       console.log("TEAM MEMBERL: ",teamMembersData)
-        //       formData.append("teamMembers", JSON.stringify(teamMembersData));
-        //   }else{
-        //     formData.append("teamMembers", "[]");
-        //   }
-        // }
+        if(Team?.teamMembers){
+          if(Array.isArray(Team.teamMembers)){
+              const teamMembersData = data.teamMembers.map((member) => ({
+                name: member.name,
+                phone: member.phone,
+                email: member.email,
+                aadhar: member.aadhar,
+              }));
+              console.log("TEAM MEMBERL: ",teamMembersData)
+              formData.append("teamMembers", JSON.stringify(teamMembersData));
+          }else{
+            formData.append("teamMembers", "[]");
+          }
+        }
 
         setLoading(true)
         const result = await editTeamDetails(formData, token)
@@ -146,13 +146,13 @@ export default function RegistrationForm() {
             aadhar: member.aadhar,
         }));
         formData.append("teamMembers", JSON.stringify(teamMembersData));
-        console.log("FORMAT: ", teamMembersData);
+        console.log("FORMAT: ", teamMembersData)
       } else {
-          formData.append("teamMembers", "[]");
+          formData.append("teamMembers", "[]")
       }
     }
     setLoading(true)
-    const res = await registerTeam(formData,token);
+    const res = await registerTeam(formData,token)
       if(res.success){
         console.log("RESPONE: ",res.data) 
         dispatch(setStep(2));

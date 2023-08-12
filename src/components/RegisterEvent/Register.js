@@ -90,7 +90,7 @@ const Register = () => {
     if(token){
        handleEventRegister(data);
     }
-    dispatch(resetEventState())
+    // dispatch(resetEventState())
   }
   return (
     <>

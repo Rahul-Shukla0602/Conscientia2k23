@@ -5,11 +5,13 @@ const Participant = require('../models/Participant')
 
 exports.registerEvent = async (req,res)=>{
     try{
-        const {name,college,collegeId,teamName,phone,email,aadhar} = req.body;
+        const {name,college,collegeId,teamName,phone,email,aadhar} =  req.body;
         const eventId = req.body.eventId
-        // const teamMembers = req.body.teamMembers ? JSON.parse(req.body.teamMembers) : [] ;
+        const teamMembers = req.body.teamMembers ? req.body.teamMembers : [] ;
         // const teamMembers = JSON.parse(req.body.teamMembers)|| req.body.teamMembers;
-        const teamMembers = req.body.teamMembers;
+        // const teamMembers = req.body.teamMembers || [];
+        // // console.log("PARED:",JSON.parse(req.body.teamMembers));
+        console.log("TEAM MEMBER in backend: ",teamMembers);
         if(!eventId || !name || !college || !collegeId || !phone
             || !aadhar || !email){
             return res.status(404).json({
@@ -17,8 +19,9 @@ exports.registerEvent = async (req,res)=>{
                 message:"All fields are required"
             })
         }
+        const parsedTeamMembers = JSON.parse(teamMembers);
         const validatedTeamMembers = 
-        teamMembers.map(member => {
+        parsedTeamMembers.map(member => {
             const {
                 name,
                 phone,
@@ -75,7 +78,8 @@ exports.editTeamDetails = async (req,res)=>{
     try{
         const {TeamId,teamMembers,...updates} = req.body;
         console.log("DD: ",req.body)
-        const parsedTeamMembers = JSON.parse(teamMembers || "[]");
+        // const parsedTeamMembers = JSON.parse(teamMembers || "[]");
+        const parsedTeamMembers = JSON.parse(teamMembers || "[]");;
         if (!TeamId || !updates) {
             return res.status(404).json({
                 success:false,

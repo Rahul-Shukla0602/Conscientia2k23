@@ -26,5 +26,5 @@ const participantSlice = createSlice({
     }
 })
 
-export const {setParticipant,setEditTeam,setTeam,resetEventState} = participantSlice.actions;
-export default participantSlice.reducer;
+export const {setParticipant,setEditTeam,setTeam,resetEventState} = participantSlice.actions
+export default participantSlice.reducer
