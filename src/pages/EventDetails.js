@@ -47,20 +47,20 @@ const EventDetails = () => {
         <div className=' flex flex-col gap-2'>
             <img src={eventData.thumbnail} alt='' className=' rounded-3xl lg:w-[700px] w-[300px] lg:h-[400px] h-[350px]'/>
             <p className=' text-richblack-5'>{eventData.eventName}</p>
-            <p>{eventData.eventDescription}</p>
+            <p className=' text-sm lg:text-base '>{eventData.eventDescription}</p>
 
             {/* Disclaimer text */}
-            <p>
-              <span className=' text-richblack-5'>Disclaimer: </span>Please note that in the event if the minimum required number of participants
+            <p className=' text-sm lg:text-base '>
+              <span className=' text-richblack-5 '>Disclaimer: </span>Please note that in the event if the minimum required number of participants
               is not met, we reserve the right to cancel the event, and registered participants will be duly
               informed and provided with a full refund of their registration fees.
             </p>
             
             <div className='flex gap-4'>
-                <p className=' text-richblack-5'>{
-                  eventData.price !== 0 ?<p>Price: {eventData.price}</p> :""
+                <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>{
+                  eventData.price !== 0 ?<p>PRIZE: {eventData.price} INR</p> :""
                 }</p>
-                <p className=' text-richblack-5'>REGISTRATION FEE: {eventData.fee} INR</p>
+                <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR</p>
             </div>
             <div className=' flex gap-6'>
                <Link to={eventData.BrochureLink} className='flex justify-center items-center text-pink-100'>
