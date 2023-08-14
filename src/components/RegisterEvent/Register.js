@@ -140,10 +140,12 @@ const Register = () => {
         </p>
 
         <label className=' form-style text-richblack-5'>
-          <p className=' text-richblack-25 mt-[10px]  text-xl '>Payment ID: </p>
+          <p className=' text-richblack-25 mt-[10px]  text-xl'>Payment ID: </p>
           <input type='text'
+           placeholder='paymentID'
            id="paymentID"
-          {...register("paymentID")}
+           
+          {...register("paymentID", { required: true })}
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}

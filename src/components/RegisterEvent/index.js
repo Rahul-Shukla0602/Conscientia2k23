@@ -179,6 +179,7 @@ export default function RegistrationForm() {
           {...register("name", { required: true })}
           type="text"
           id="name"
+          placeholder="your name"
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -199,6 +200,7 @@ export default function RegistrationForm() {
           {...register("college", { required: true })}
           type="text"
           id="college"
+          placeholder="college"
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -219,6 +221,7 @@ export default function RegistrationForm() {
           {...register("collegeId", { required: true })}
           type="text"
           id="collegeId"
+          placeholder="collegeID"
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -241,6 +244,7 @@ export default function RegistrationForm() {
               {...register("teamName")}
               type="text"
               id="teamName"
+              placeholder="TeamName"
               style={{
                           boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
@@ -263,6 +267,7 @@ export default function RegistrationForm() {
           {...register("phone", { required: true })}
           type="text"
           id="phone"
+          placeholder="Your PhoneNo."
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -282,6 +287,7 @@ export default function RegistrationForm() {
         <input
           {...register("email", { required: true })}
           type="email"
+          placeholder="Email"
           id="email"
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
@@ -303,6 +309,7 @@ export default function RegistrationForm() {
           {...register("aadhar", { required: true })}
           type="text"
           id="aadhar"
+          placeholder="aadhar"
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -330,6 +337,7 @@ export default function RegistrationForm() {
                 <input
                   {...register(`teamMembers[${index}].name`)}
                   type="text"
+                  placeholder="name"
                   id={`teamMembers[${index}].name`}
                   style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
@@ -351,6 +359,7 @@ export default function RegistrationForm() {
                 <input
                   {...register(`teamMembers[${index}].phone`)}
                   type="text"
+                  placeholder="Phone no."
                   id={`teamMembers[${index}].phone`}
                   style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
@@ -372,6 +381,7 @@ export default function RegistrationForm() {
                 <input
                   {...register(`teamMembers[${index}].email`)}
                   type="email"
+                  placeholder="email"
                   id={`teamMembers[${index}].email`}
                   style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
@@ -394,6 +404,7 @@ export default function RegistrationForm() {
                   {...register(`teamMembers[${index}].aadhar`)}
                   type="text"
                   id={`teamMembers[${index}].aadhar`}
+                  placeholder="aadhar"
                   style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                   }}
