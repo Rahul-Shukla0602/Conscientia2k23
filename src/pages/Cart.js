@@ -4,147 +4,147 @@ import {AiOutlinePlus} from 'react-icons/ai'
 import {AiOutlineMinus} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { 
-    // clearCart, 
+    clearCart, 
     decreasequnatity, increasequantity } from '../slices/cartSlice'
 import Footer from '../components/common/Footer'
-// import { setLoading } from '../slices/authSlice'
-// import { toast } from "react-hot-toast"
+import { setLoading } from '../slices/authSlice'
+import { toast } from "react-hot-toast"
 
 
 const Cart = ()=>{
 
     const cartitems = useSelector((state) => state.cart)
-    // const { token } = useSelector((state) => state.auth);
-    // const {user} = useSelector((state)=> state.profile);
+    const { token } = useSelector((state) => state.auth);
+    const {user} = useSelector((state)=> state.profile);
     const dispatch = useDispatch();
 
-    // function loadScript(src) {
-    //     return new Promise((resolve) => {
-    //         const script = document.createElement('script')
-    //         script.src = src
-    //         script.onload = () => {
-    //             resolve(true)
-    //         }
-    //         script.onerror = () => {
-    //             resolve(false)
-    //         }
-    //         document.body.appendChild(script)
-    //     })
-    // }
+    function loadScript(src) {
+        return new Promise((resolve) => {
+            const script = document.createElement('script')
+            script.src = src
+            script.onload = () => {
+                resolve(true)
+            }
+            script.onerror = () => {
+                resolve(false)
+            }
+            document.body.appendChild(script)
+        })
+    }
     
-    // const checkoutbtn = async () => {
-    //     console.log("button clicked")
-    //     const toastID = toast.loading('Loading...');
-    //     dispatch(setLoading(true));
-    //     if(token){
-    //         if (cartitems.totalitems !== 0 && cartitems.totalamount !== 0) {
-    //             let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/init`, {
-    //                 method: 'POST',
-    //                 mode: 'cors',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify({
-    //                     amount: cartitems.totalamount,
-    //                     items: cartitems.items,
-    //                     qty: cartitems.totalitems
-    //                 })
-    //             })
-    //             // console.log("RESPONSE: ",response);
-    //             let resjson = await response.json()
+    const checkoutbtn = async () => {
+        console.log("button clicked")
+        const toastID = toast.loading('Loading...');
+        dispatch(setLoading(true));
+        if(token){
+            if (cartitems.totalitems !== 0 && cartitems.totalamount !== 0) {
+                let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/init`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: cartitems.totalamount,
+                        items: cartitems.items,
+                        qty: cartitems.totalitems
+                    })
+                })
+                // console.log("RESPONSE: ",response);
+                let resjson = await response.json()
     
-    //             const dataobj = JSON.parse(resjson);
+                const dataobj = JSON.parse(resjson);
     
-    //             const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+                const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
     
-    //             if (!res) {
-    //                 toast.error('Razropay failed to load!!')
-    //                 dispatch(setLoading(false));
-    //                 toast.dismiss(toastID);
-    //                 return
-    //             }
+                if (!res) {
+                    toast.error('Razropay failed to load!!')
+                    dispatch(setLoading(false));
+                    toast.dismiss(toastID);
+                    return
+                }
                 
-    //             console.log("script loaded")
-    //             const options = {
-    //                 "key": process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-    //                 "amount": dataobj.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    //                 "currency": "INR",
-    //                 "name": "Conscientia 2k23",
-    //                 "description": "Payment for Merchandise",
-    //                 "image": "https://www.conscientia.co.in/static/media/logo.4be3c95d539b7aa2e736.png",
-    //                 "order_id": dataobj.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    //                 "theme": {
-    //                     "color": "#3399cc"
-    //                 },
-    //                 "handler": function (response) {
-    //                     // alert(response.razorpay_payment_id);
-    //                     // alert(response.razorpay_order_id);
-    //                     // alert(response.razorpay_signature)
-    //                     afterPayment('success', dataobj.mongoid, response);
-    //                 },
-    //                 "prefill": {
-    //                     "name": user.firstName,
-    //                     "email": user.email,
-    //                     "contact": +919191919191
-    //                 }
-    //             };
-    //             console.log(options)
+                console.log("script loaded")
+                const options = {
+                    "key": process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+                    "amount": dataobj.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "Conscientia 2k23",
+                    "description": "Payment for Merchandise",
+                    "image": "https://www.conscientia.co.in/static/media/logo.4be3c95d539b7aa2e736.png",
+                    "order_id": dataobj.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "theme": {
+                        "color": "#3399cc"
+                    },
+                    "handler": function (response) {
+                        // alert(response.razorpay_payment_id);
+                        // alert(response.razorpay_order_id);
+                        // alert(response.razorpay_signature)
+                        afterPayment('success', dataobj.mongoid, response);
+                    },
+                    "prefill": {
+                        "name": user.firstName,
+                        "email": user.email,
+                        "contact": +919191919191
+                    }
+                };
+                console.log(options)
                 
-    //             const paymentObject = new window.Razorpay(options);
+                const paymentObject = new window.Razorpay(options);
                 
-    //             paymentObject.on('payment.failed', function (response) {
-    //                 // alert(response.error.code);
-    //                 // alert(response.error.description);
-    //                 // alert(response.error.source);
-    //                 // alert(response.error.step);
-    //                 // alert(response.error.reason);
-    //                 // alert(response.error.metadata.order_id);
-    //                 // alert(response.error.metadata.payment_id);
-    //                 afterPayment('failure', dataobj.mongoid, response);
-    //             })
+                paymentObject.on('payment.failed', function (response) {
+                    // alert(response.error.code);
+                    // alert(response.error.description);
+                    // alert(response.error.source);
+                    // alert(response.error.step);
+                    // alert(response.error.reason);
+                    // alert(response.error.metadata.order_id);
+                    // alert(response.error.metadata.payment_id);
+                    afterPayment('failure', dataobj.mongoid, response);
+                })
                 
-    //             paymentObject.open();
+                paymentObject.open();
                 
-    //         } else {
-    //             toast.error("Cart is empty")
-    //         }
-    //     }else{
-    //         toast.error("Please login first")
-    //     }
-    //     dispatch(setLoading(false));
-    //     toast.dismiss(toastID);
+            } else {
+                toast.error("Cart is empty")
+            }
+        }else{
+            toast.error("Please login first")
+        }
+        dispatch(setLoading(false));
+        toast.dismiss(toastID);
         
-    // }
+    }
     
-    // const afterPayment = async (status, mongoid, res) => {
-    //     const toastID = toast.loading('Loading...')
-    //     let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/verify`,{
-    //         method: 'POST',
-    //         mode: 'cors',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             orderstatus: status,
-    //             mongoid: mongoid,
-    //             response: res,
-    //             userdata: user,
-    //             paymentreport: res
-    //         })
-    //     })
-    //     let resjson = await response.json()
+    const afterPayment = async (status, mongoid, res) => {
+        const toastID = toast.loading('Loading...')
+        let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/verify`,{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                orderstatus: status,
+                mongoid: mongoid,
+                response: res,
+                userdata: user,
+                paymentreport: res
+            })
+        })
+        let resjson = await response.json()
         
-    //     const dataobj = JSON.parse(resjson);
-    //     if (dataobj.status === 1) {
-    //         // console.log("To Clear")
-    //         toast.success(dataobj.msg);
-    //         dispatch(clearCart({}));
-    //     }else{
-    //         toast.error(dataobj.msg);
-    //     }
-    //     toast.dismiss(toastID);
-    //     dispatch(setLoading(false));
-    // }
+        const dataobj = JSON.parse(resjson);
+        if (dataobj.status === 1) {
+            // console.log("To Clear")
+            toast.success(dataobj.msg);
+            dispatch(clearCart({}));
+        }else{
+            toast.error(dataobj.msg);
+        }
+        toast.dismiss(toastID);
+        dispatch(setLoading(false));
+    }
     
     
 
@@ -209,7 +209,7 @@ const Cart = ()=>{
                             <span>₹{cartitems.totalamount}</span>
                             <button
                             className='bg-yellow-200 rounded-xl text-richblack-800 border-[1px] border-richblack-200'
-                            // onClick={checkoutbtn} 
+                            onClick={checkoutbtn} 
                             id='rzp'><span>Checkout</span></button>
                         </div>
                     </section>
