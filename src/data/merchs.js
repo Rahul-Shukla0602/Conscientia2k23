@@ -5,7 +5,7 @@ export const Merchs = [
         title: "Black Astronaut T-Shirt",
         img:'https://res.cloudinary.com/do07okngw/image/upload/v1691211709/black_shirt_lstwzo.jpg',
         desc: "This black t-shirt boasts a mesmerizing Cosmic Carnival theme, capturing the essence of a celestial circus. Vividly colored cosmic creatures dance amid sparkling stars and swirling galaxies, creating an enchanting spectacle. Embrace the mystique of the universe with this captivating wearable art piece.",
-        rate: 450,
+        rate: 10,
         size: ['S','M','L','XL','XXL'],
         color: 'Black'
     },

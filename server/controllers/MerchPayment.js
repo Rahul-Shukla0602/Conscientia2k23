@@ -108,7 +108,7 @@ exports.verifyOrder = async (req, res) => {
                 doc.paymentreport = {reason: 'checksum verification failed'};
                 await doc.save();
                 tosend.status = 0;
-                tosend.msg = 'Payment Failed! Unable to verify the authenticity of Transaction. If money has been deducted from your account, please contact us with order id ' + response.razorpay_order_id;
+                tosend.msg = 'Payment Failed! Unable to verify the authenticity of Transaction.If money has been deducted from your account, please contact us with order id ' + response.razorpay_order_id;
             }
 
         } else {

@@ -15,10 +15,10 @@ export const NavbarLinks = [
       title: "Sponsor",
       path: "/sponsor",
     },
-    // {
-    //     title: "Accomodation",
-    //     path: "/accomodation",
-    // },
+    {
+        title: "Cap",
+        path: "/campus_ambassador",
+    },
     // {
     //     title: "Contact Us",
     //     path: "/contactus",

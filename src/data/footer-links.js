@@ -19,11 +19,11 @@ export const FooterLinks = [
         title: 'Sponsor',
         path: '/sponsor'
     },
-    // {
-    //     id:5,
-    //     title: 'Accomodation',
-    //     path: '/accomodation'
-    // },
+    {
+        id:5,
+        title: 'CAP',
+        path: '/campus_ambassador'
+    },
     // {
     //     id:6,
     //     title: 'Contact Us',
