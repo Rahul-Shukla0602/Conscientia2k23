@@ -69,7 +69,7 @@ exports.verifyOrder = async (req, res) => {
             console.log("h3")    
             console.log("SIGN: "+generated_signature);
             console.log("sign_r:",response?.razorpay_signature);
-            if (generated_signature === response?.razorpay_signature){
+            if (generated_signature == response?.razorpay_signature){
                 console.log("hum iske bhi under aa gaye hai")
                 doc.status = 'success';
                 doc.paymentreport = response;
