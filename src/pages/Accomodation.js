@@ -336,8 +336,8 @@ export default function Accomodation() {
                                 <div className="flex justify-center" onChange={() => {
                                     dispatch(setDate({ type: 'checkin', value: document.querySelector('input[name="checkin"]:checked').value }))
                                 }}>
-                                    <label htmlFor="checkin23">
-                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin23" value={22} />
+                                    <label htmlFor="checkin22">
+                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin22" value={22} />
                                         <span className='radiotext'>22</span>
                                     </label>
                                     <label htmlFor="checkin23">
@@ -359,8 +359,8 @@ export default function Accomodation() {
                                 <div className="flex justify-center" onChange={() => {
                                     dispatch(setDate({ type: 'checkout', value: document.querySelector('input[name="checkout"]:checked').value }))
                                 }}>
-                                    <label htmlFor="checkin23">
-                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin23" value={22} />
+                                    <label htmlFor="checkin22">
+                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin22" value={22} />
                                         <span className='radiotext'>22</span>
                                     </label>
                                     <label htmlFor="checkout23">
