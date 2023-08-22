@@ -19,7 +19,6 @@ export default function Accomodation() {
     const { user } = useSelector((state) => state.profile);
     const { loading } = useSelector((state) => state.auth)
     const { register, handleSubmit, formState: { errors },
-    //  setValue, getValues
      } = useForm();
     const [checkoutbtntext, setcheckoutbtn] = useState("Pay and Submit")
 
@@ -338,7 +337,7 @@ export default function Accomodation() {
                                     dispatch(setDate({ type: 'checkin', value: document.querySelector('input[name="checkin"]:checked').value }))
                                 }}>
                                     <label htmlFor="checkin23">
-                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin23" value={23} />
+                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin23" value={22} />
                                         <span className='radiotext'>22</span>
                                     </label>
                                     <label htmlFor="checkin23">
@@ -361,7 +360,7 @@ export default function Accomodation() {
                                     dispatch(setDate({ type: 'checkout', value: document.querySelector('input[name="checkout"]:checked').value }))
                                 }}>
                                     <label htmlFor="checkin23">
-                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin23" value={23} />
+                                        <input type="radio" className='accocheckradio' name="checkin" id="checkin23" value={22} />
                                         <span className='radiotext'>22</span>
                                     </label>
                                     <label htmlFor="checkout23">
