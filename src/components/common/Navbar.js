@@ -105,7 +105,7 @@ const Navbar = () => {
           )}
           {token  && (
             <Link 
-            className=' hidden lg:block text-richblack-500'
+            className=' hidden transform translate-x-[150px] lg:block text-richblack-500'
             >
               <ProfileDropDown />
             </Link>

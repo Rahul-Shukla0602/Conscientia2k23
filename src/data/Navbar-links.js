@@ -16,6 +16,10 @@ export const NavbarLinks = [
       path: "/sponsor",
     },
     {
+      title: "Accomodation",
+      path: "/accomodation",
+    },
+    {
         title: "Cap",
         path: "/campus_ambassador",
     },

@@ -34,6 +34,7 @@ import Privacypolicy from "./pages/Privacypolicy";
 import Shippingpolicy from "./pages/Shippingpolicy";
 import CancellationAndRefund from "./pages/CancellationAndRefund";
 import Campus from "./components/common/Campus";
+import Accomodation from "./pages/Accomodation";
 
 function App() {
   const [preloader, setPreloader] = useState("visible");
@@ -81,6 +82,7 @@ function App() {
               <Route path="/shipping" element={<Shippingpolicy/>}/>
               <Route path="/cancellation" element={<CancellationAndRefund/>}/>
               <Route path="/campus_ambassador" element={<Campus/>}/>
+              <Route path="/accomodation" element={<Accomodation/>}/>
               {/* <Route path="/event/registerEvent/:eventId" element={<RegistrationForm/>}/> */}
               <Route path="/event/registerEvent/:eventId" element={<RenderRegister/>}/> 
               <Route path="/merchandise" element={<Merchandise/>}></Route>
