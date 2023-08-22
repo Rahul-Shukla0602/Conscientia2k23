@@ -65,7 +65,7 @@ const Navbar = () => {
         ref={myref}
         onClick={(e)=>e.stopPropagation()}
         className={`md:flex lg:flex-row flex-col md:items-center
-        ${navbarOpen && Open ? 'w-[200px] h-[250px] px-5 text-end absolute block transform translate-x-[100px] translate-y-[170px] bg-transparent backdrop-blur-2xl' : 'hidden'}`}>
+        ${navbarOpen && Open ? 'w-[200px] h-[280px] px-5 text-end absolute block transform translate-x-[100px] translate-y-[170px] bg-transparent backdrop-blur-2xl' : 'hidden'}`}>
           <ul className='z-50 md:flex md:items-center space-x-6 md:space-x-10'>
             {NavbarLinks.map((link, index) => (
               <li key={index}>
@@ -84,7 +84,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className='flex flex-col lg:flex-row items-center space-x-4 gap-2  lg:pl-[700px] absolute'>
+          <div className='flex flex-col lg:flex-row items-center space-x-4 gap-2  lg:pl-[800px] absolute'>
           {!token && (
             <Link
             onClick={() => setOpen(false)}
