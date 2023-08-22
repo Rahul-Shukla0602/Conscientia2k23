@@ -225,12 +225,13 @@ export default function Accomodation() {
 
         paymentObject.open();
 
-        // dispatch(setLoading(false));
+        dispatch(setLoading(false));
         toast.dismiss(toastID);
 
     }
 
     const afterPayment = async (status, mongoid, res) => {
+        dispatch(setLoading(true))
         const toastID = toast.loading('Loading...')
         let response = await fetch(`${process.env.REACT_APP_BASE_URL}/accomodation/verify`, {
             method: 'POST',
