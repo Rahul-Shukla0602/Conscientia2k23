@@ -24,6 +24,7 @@ import AddEvent from "./components/DashBoard/addEvent";
 import MyEvents from "./components/DashBoard/MyEvents";
 import EditEvent from "./components/DashBoard/EditEvent";
 import EventDetails from "./pages/EventDetails";
+import Accomodation from "./pages/Accomodation";
 // import  RegistrationForm  from "./components/RegisterEvent/index";
 // import FinalEvent from "./components/RegisterEvent/FinalEvent";
 import RenderRegister from "./components/RegisterEvent/RenderRegister";
@@ -79,6 +80,7 @@ function App() {
               <Route path="/privacy" element={<Privacypolicy/>}/>
               <Route path="/shipping" element={<Shippingpolicy/>}/>
               <Route path="/cancellation" element={<CancellationAndRefund/>}/>
+              <Route path="/accomodation" element={<Accomodation/>}/>
               {/* <Route path="/event/registerEvent/:eventId" element={<RegistrationForm/>}/> */}
               <Route path="/event/registerEvent/:eventId" element={<RenderRegister/>}/> 
               <Route path="/merchandise" element={<Merchandise/>}></Route>

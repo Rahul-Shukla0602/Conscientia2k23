@@ -5,6 +5,7 @@ const userRoutes = require("./routes/User");
 const eventRoutes = require('./routes/Event')
 const paymentRoutes = require('./routes/Payments')
 const merchPayment = require('./routes/MerchPayment')
+const accomoDation = require('./routes/Accomodation')
 
 
 const database = require("./config/database");
@@ -25,8 +26,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"https://www.conscientia.co.in",
-		// origin:"http://localhost:3000",
+		// origin:"https://www.conscientia.co.in",
+		origin:"http://localhost:3000",
 		credentials:true,
 	})
 )
@@ -44,6 +45,7 @@ app.use("/api/v1/auth", userRoutes);
 app.use('/api/v1/event',eventRoutes);
 app.use('/api/v1/payment',paymentRoutes)
 app.use('/api/v1/merchpayment', merchPayment);
+app.use('/api/v1/accomodation', accomoDation);
 //def route
 app.get("/", (req, res) => {
 	return res.json({

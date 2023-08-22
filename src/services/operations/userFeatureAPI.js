@@ -53,7 +53,7 @@ const {EVENT_PAYMENT_API,
             console.log("HELLOJI!4")
             //options
             const options = {
-                key: process.env.RAZORPAY_KEY,
+                key: "rzp_live_7m7zXi9W50G5VO",
                 currency: orderResponse.data.message.currency,
                 amount: `${orderResponse.data.message.amount}`,
                 order_id:orderResponse.data.message.id,
