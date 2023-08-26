@@ -1,6 +1,7 @@
 import React from 'react'
 import { Merchs } from '../data/merchs'
 import './Merchandise.css'
+import { AiOutlineLink } from 'react-icons/ai';
 import {FaShoppingCart} from 'react-icons/fa'
 import Footer from '../components/common/Footer'
 import { Link } from 'react-router-dom'
@@ -34,14 +35,14 @@ export default function Merchandise() {
                 return(
                   <div className="lg:w-4/5 mx-auto mb-4 flex flex-wrap">
                     <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center
-                    rounded" src={val.img}/>
+                    rounded" src={val.img} loading='lazy'/>
                     <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h2 className="text-sm title-font text-gray-500 tracking-widest">{val.brand}</h2>
                     <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{val.title}</h1>
                     <p className="leading-relaxed">{val.desc}</p>
                     <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-                    <div className="flex"><span className="mr-3">Color: {val.color}</span></div>
-                    <div className="flex ml-6 items-center">
+                    <div className="flex"><span className="mr-3 whitespace-nowrap text-sm lg:text-base ">Color: {val.color}</span></div>
+                    <div className="flex ml-6 items-center text-base">
                     <span className="mr-3">Size</span>
                     <div className="text-black relative">
                         <select id={val.id} className="font-medium rounded border appearance-none border-gray-300
@@ -59,6 +60,11 @@ export default function Merchandise() {
                             </svg>
                         </span>
                     </div>
+                      <Link className='pl-[20px] whitespace-nowrap flex flex-row-reverse items-center gap-[8px] text-pink-100' 
+                        to='https://res.cloudinary.com/dwdwnfcnx/image/upload/v1693058272/size_cart_budgj1.jpg'
+                        target='_blank'>Size Guide
+                        <AiOutlineLink/>
+                      </Link>
                     </div>
                   </div>
                   <div className="flex">

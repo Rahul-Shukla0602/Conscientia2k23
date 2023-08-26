@@ -1,158 +1,68 @@
 import React from 'react'
 import './Cart.css'
-import {AiOutlinePlus} from 'react-icons/ai'
-import {AiOutlineMinus} from 'react-icons/ai'
+import { AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlineMinus } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { 
-    // clearCart, 
-    decreasequnatity, increasequantity } from '../slices/cartSlice'
+import {
+    addDeliveryCharge,
+    decreasequnatity, increasequantity, removeDeliveryCharge
+} from '../slices/cartSlice'
 import Footer from '../components/common/Footer'
-// import { setLoading } from '../slices/authSlice'
-// import { toast } from "react-hot-toast"
+import { useForm } from 'react-hook-form'
+import { toast } from "react-hot-toast"
+import Instore from '../components/Cart/Instore'
+import Delivery from '../components/Cart/Delivery'
+import UPI from '../components/Cart/UPI'
 
 
-const Cart = ()=>{
+const Cart = () => {
 
     const cartitems = useSelector((state) => state.cart)
-    // const { token } = useSelector((state) => state.auth);
-    // const {user} = useSelector((state)=> state.profile);
+    const { register, handleSubmit} = useForm();
+    const { token } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
-    // function loadScript(src) {
-    //     return new Promise((resolve) => {
-    //         const script = document.createElement('script')
-    //         script.src = src
-    //         script.onload = () => {
-    //             resolve(true)
-    //         }
-    //         script.onerror = () => {
-    //             resolve(false)
-    //         }
-    //         document.body.appendChild(script)
-    //     })
-    // }
-    
-    // const checkoutbtn = async () => {
-    //     console.log("button clicked")
-    //     const toastID = toast.loading('Loading...');
-    //     dispatch(setLoading(true));
-    //     if(token){
-    //         if (cartitems.totalitems !== 0 && cartitems.totalamount !== 0) {
-    //             let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/init`, {
-    //                 method: 'POST',
-    //                 mode: 'cors',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify({
-    //                     amount: cartitems.totalamount,
-    //                     items: cartitems.items,
-    //                     qty: cartitems.totalitems
-    //                 })
-    //             })
-    //             // console.log("RESPONSE: ",response);
-    //             let resjson = await response.json()
-    
-    //             const dataobj = JSON.parse(resjson);
-    
-    //             const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
-    
-    //             if (!res) {
-    //                 toast.error('Razropay failed to load!!')
-    //                 dispatch(setLoading(false));
-    //                 toast.dismiss(toastID);
-    //                 return
-    //             }
-                
-    //             console.log("script loaded")
-    //             const options = {
-    //                 "key": process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-    //                 "amount": dataobj.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    //                 "currency": "INR",
-    //                 "name": "Conscientia 2k23",
-    //                 "description": "Payment for Merchandise",
-    //                 "image": "https://www.conscientia.co.in/static/media/logo.4be3c95d539b7aa2e736.png",
-    //                 "order_id": dataobj.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    //                 "theme": {
-    //                     "color": "#3399cc"
-    //                 },
-    //                 "handler": function (response) {
-    //                     // alert(response.razorpay_payment_id);
-    //                     // alert(response.razorpay_order_id);
-    //                     // alert(response.razorpay_signature)
-    //                     afterPayment('success', dataobj.mongoid, response);
-    //                 },
-    //                 "prefill": {
-    //                     "name": user.firstName,
-    //                     "email": user.email,
-    //                     "contact": +919191919191
-    //                 }
-    //             };
-    //             console.log(options)
-                
-    //             const paymentObject = new window.Razorpay(options);
-                
-    //             paymentObject.on('payment.failed', function (response) {
-    //                 // alert(response.error.code);
-    //                 // alert(response.error.description);
-    //                 // alert(response.error.source);
-    //                 // alert(response.error.step);
-    //                 // alert(response.error.reason);
-    //                 // alert(response.error.metadata.order_id);
-    //                 // alert(response.error.metadata.payment_id);
-    //                 afterPayment('failure', dataobj.mongoid, response);
-    //             })
-                
-    //             paymentObject.open();
-                
-    //         } else {
-    //             toast.error("Cart is empty")
-    //         }
-    //     }else{
-    //         toast.error("Please login first")
-    //     }
-    //     dispatch(setLoading(false));
-    //     toast.dismiss(toastID);
-        
-    // }
-    
-    // const afterPayment = async (status, mongoid, res) => {
-    //     const toastID = toast.loading('Loading...')
-    //     let response = await fetch(`${process.env.REACT_APP_BASE_URL}/merchpayment/verify`,{
-    //         method: 'POST',
-    //         mode: 'cors',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             orderstatus: status,
-    //             mongoid: mongoid,
-    //             response: res,
-    //             userdata: user,
-    //             paymentreport: res
-    //         })
-    //     })
-    //     let resjson = await response.json()
-        
-    //     const dataobj = JSON.parse(resjson);
-    //     if (dataobj.status === 1) {
-    //         // console.log("To Clear")
-    //         toast.success(dataobj.msg);
-    //         dispatch(clearCart({}));
-    //     }else{
-    //         toast.error(dataobj.msg);
-    //     }
-    //     toast.dismiss(toastID);
-    //     dispatch(setLoading(false));
-    // }
-    
-    
+    const checkoutnext = (data) => {
+        console.log(data)
+        if(token){
+            if(cartitems.totalamount>0 && cartitems.totalitems>0){
+                if(data.merchdelivery === 'delivery'){
+                    document.getElementById('cart_container').classList.toggle('hidden')
+                    document.getElementById('cart_container').classList.toggle('lg:hidden')
+                    document.getElementById('delivery_container').classList.toggle('hidden')
+                    document.getElementById('deliveryform').classList.toggle('hidden')
+                }else if(data.merchdelivery === 'instore'){
+                    document.getElementById('cart_container').classList.toggle('hidden')
+                    document.getElementById('cart_container').classList.toggle('lg:hidden')
+                    document.getElementById('delivery_container').classList.toggle('hidden')
+                    document.getElementById('instoreform').classList.toggle('hidden')
+                }
+            }else{
+                toast.error("Cart is empty")
+            }
+        }else{
+            toast.error("Please login first")
+        }
+    }
+
+    const onselectchange = (data)=>{
+        console.log(data.target.value)
+        if(data.target.value === 'delivery'){
+            dispatch(addDeliveryCharge({
+                charge: 100
+            }))
+        }else{
+            dispatch(removeDeliveryCharge({
+                charge: 100
+            }))
+        }
+    }
 
     return (
         <div className=''>
             <section className="z-20 relative text-base text-white font-light pt-32">
                 <span className='block w-full text-center font-bold text-4xl'>Shopping Cart</span>
-                <section id='cart_container' className=''>
+                <section id='cart_container' className='lg:grid flex'>
                     <section id='cart_items' className=''>
                         {
                             cartitems.items.map((value, i) => {
@@ -204,15 +114,29 @@ const Cart = ()=>{
                         }
                     </section>
                     <section id='cart_total'>
-                        <div className='cart_total_card bg-richblack-800 text-richblack-100 border-[1px] border-richblack-200'>
+                        <form onSubmit={handleSubmit(checkoutnext)} className='cart_total_card bg-richblack-800 text-richblack-100 border-[1px] border-richblack-200'>
                             <span>Total Items : {cartitems.totalitems}</span>
                             <span>₹{cartitems.totalamount}</span>
+                            <span>{(cartitems.deliveryfee)?"*included ₹100 delivery fee":""}</span>
+                            <div className='flex justify-center'>
+                                <select name='merchdelivery' id='merchdelivery' {...register('merchdelivery',{
+                                    onChange: onselectchange
+                                })} onChange={onselectchange} className='text-black font-normal p-2 rounded'>
+                                    <option value="instore" selected={!(cartitems.deliveryfee)}>In-Store Pickup</option>
+                                    <option value="delivery" selected={(cartitems.deliveryfee)}>Outside Delivery</option>
+                                </select>
+                            </div>
                             <button
-                            className='bg-yellow-200 rounded-xl text-richblack-800 border-[1px] border-richblack-200'
-                            // onClick={checkoutbtn} 
-                            id='rzp'><span>Checkout</span></button>
-                        </div>
+                                className='bg-yellow-100 hover:bg-yellow-300 rounded-xl text-richblack-800 border-[1px] border-richblack-200'
+                                type='submit'
+                                id='rzp'><span>Checkout</span></button>
+                        </form>
                     </section>
+                </section>
+                <section id='delivery_container' className='hidden lg:flex bg-slate-900 px-3 py-[270px] lg:py-32 flex-col items-center transform -translate-y-[140px] lg:translate-y-[-40px] '>
+                <Instore/>
+                <Delivery/>
+                <UPI/>
                 </section>
                 <Footer />
             </section>
