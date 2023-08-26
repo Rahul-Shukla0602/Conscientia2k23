@@ -7,7 +7,9 @@ const cartSlice = createSlice({
     initialState: {
         totalitems: 0,
         totalamount: 0,
-        items: []
+        items: [],
+        deliveryfee: false,
+        deliverydetails: {}
     },
     reducers: {
         addtocart(state,actions){
@@ -49,13 +51,30 @@ const cartSlice = createSlice({
             state.totalamount -= actions.payload.rate;
             state.totalitems -= 1;
         },
+        saveDelivery(state,actions){
+            state.deliverydetails = actions.payload;
+        },
         clearCart(state,actions){
             state.totalamount = 0;
             state.totalitems = 0;
             state.items = [];
+            state.deliverydetails = {};
+            state.deliveryfee = false;
+        },
+        addDeliveryCharge(state,actions){
+            if(!state.deliveryfee){
+                state.deliveryfee = true;
+                state.totalamount += actions.payload.charge;
+            }
+        },
+        removeDeliveryCharge(state,actions){
+            if(state.deliveryfee){
+                state.deliveryfee = false;
+                state.totalamount -= actions.payload.charge;
+            }
         }
     }
 })
 
-export const {addtocart,increasequantity,decreasequnatity,clearCart} = cartSlice.actions;
+export const {addtocart,increasequantity,decreasequnatity,saveDelivery,addDeliveryCharge,removeDeliveryCharge,clearCart} = cartSlice.actions;
 export default cartSlice.reducer;

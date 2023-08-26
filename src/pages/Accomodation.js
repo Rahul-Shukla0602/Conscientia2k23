@@ -191,7 +191,7 @@ export default function Accomodation() {
             "amount": resobj.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Conscientia 2k23",
-            "description": "Payment for Merchandise",
+            "description": "Payment for Accomodation",
             "image": "https://www.conscientia.co.in/static/media/logo.4be3c95d539b7aa2e736.png",
             "order_id": resobj.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "theme": {

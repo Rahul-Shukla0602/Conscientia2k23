@@ -9,14 +9,14 @@ const accomoDation = new mongoose.Schema({
     isminorgirl: {type: Boolean, required: true},
     guardian: {type: Number, requred: true},
     details: {type: Object, required: true},
-    user: {type: Object, requred: true},
     eventfree: {type: Boolean, required: true},
     checkIn: {type: String, required: true},
     checkOut: {type: String, required: true},
     days: {type: Number, required: true},
     paymentID: {type: String, requred: true},
     paymentStatus: {type: String, required: true},
-    paymentMethod: {type: String, required: true}
+    paymentMethod: {type: String, required: true},
+    user: {type: Object, requred: true},
 },{timestamps: true});
 
 module.exports = mongoose.model("Accomodations",accomoDation);

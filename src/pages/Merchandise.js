@@ -32,7 +32,7 @@ export default function Merchandise() {
             {
               Merchs.map((val,i)=>{
                 return(
-                  <div className="lg:w-4/5 mx-auto mb-4 flex flex-wrap">
+                  <div className="lg:w-4/5 mx-auto mb-14 flex flex-wrap">
                     <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center
                     rounded" src={val.img}/>
                     <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
