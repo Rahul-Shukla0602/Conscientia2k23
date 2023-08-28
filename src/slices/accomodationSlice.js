@@ -71,7 +71,7 @@ const accomodationSlice = createSlice({
         setDate(state, actions) {
             state[actions.payload.type] = actions.payload.value;
             if (state.checkin && state.checkout) {
-                let temp = state.checkout - state.checkin + 1;
+                let temp = state.checkout - state.checkin;
                 state.days = (temp > 0) ? temp : 0;
             }
             state.totalcost = (state.days > 0) ? state.rate * state.totalperson * state.days : 0;
