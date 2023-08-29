@@ -10,15 +10,16 @@ exports.initiateOrder = async (req, res) => {
         const { amount, items, qty } = req.body;
         let allpayments = await MerchandisePayments.find();
         let receiptid = `Order#${allpayments.length + 1}`
+        const taxAmount = (0.02 * amount);
         var options = {
-            amount: 100*amount,
+            amount: 100*(amount + taxAmount),
             currency: "INR",
             receipt: receiptid
         }
         console.log(options)
         instance.orders.create(options, async function (err, order) {
             console.log(order)
-            if (order.amount === 100*amount) {
+            if (order.amount === 100*(amount + taxAmount)) {
                 const OrderDetail = await MerchandisePayments.create({
                     orderid: order.id,
                     amount: order.amount/100,

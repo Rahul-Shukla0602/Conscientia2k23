@@ -19,12 +19,6 @@ export const Sponsers = [
     },
     {
         id: 1,
-        logo: 'https://res.cloudinary.com/ddamjwk9z/image/upload/v1689224090/StudyNotion/skyroot_xddjze.png',
-        name:'Skyfi Labs',
-        alt: 'nature4'
-    },
-    {
-        id: 1,
         logo: 'https://res.cloudinary.com/ddamjwk9z/image/upload/v1689224069/StudyNotion/qbotics_lgskec.png',
         name:'Qbotics Labs',
         alt: 'nature5'

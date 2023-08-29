@@ -69,6 +69,14 @@ const EventDetails = () => {
                <Link to={eventData.PosterLink} className='flex justify-center items-center text-pink-100'>
                <AiOutlineLink/>
                Poster</Link>
+               {
+                (eventId === '64d7c8c2b274fa83f6096657') && (
+                  <Link to={eventData.WhatYouWillLearn} className='flex justify-center text-sm lg:text-base items-center text-pink-100'>
+                  <AiOutlineLink/>
+                  Rule set</Link>
+                )
+               }
+               
             </div>
             
             <div  className=' text-richblack-5'>
@@ -105,7 +113,8 @@ const EventDetails = () => {
                 ):''
             }
             </div>
-
+            <p className=' text-richblack-5'><span className=' text-pink-200'>*</span> The last date of registration is September 15, 2023.</p>
+            <br></br>
             
             <Link
              className='bg-yellow-200 text-black font-semibold px-2 lg:px-4 py-2 rounded-lg text-center'

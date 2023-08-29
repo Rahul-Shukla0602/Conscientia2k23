@@ -433,6 +433,11 @@ export default function Accomodation() {
                         </div>
                         <span className='text-sm mt-10 mb-1'>## - Age is less than 18</span>
                         <span className='text-sm mb-2'># - Age is greater than 18</span>
+                        <div>
+                            <span>Remarks:</span><br></br>
+                            <p>1.The check-in time is evening 5 PM and the check-out is next day evening at 5 PM. </p>
+                            <p>2. If you select one minor, then one Guardian will automatically be included; if there<br></br> are more than ten minors, then two Guardians will automatically be included.</p>
+                        </div>
                     </div>
 
                 </div>

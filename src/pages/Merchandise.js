@@ -61,7 +61,7 @@ export default function Merchandise() {
                         </span>
                     </div>
                       <Link className='pl-[20px] whitespace-nowrap flex flex-row-reverse items-center gap-[8px] text-pink-100' 
-                        to='https://res.cloudinary.com/dwdwnfcnx/image/upload/v1693058272/size_cart_budgj1.jpg'
+                        to='https://res.cloudinary.com/dwdwnfcnx/image/upload/v1693330970/size_guide_all_hvz1m4.jpg'
                         target='_blank'>Size Guide
                         <AiOutlineLink/>
                       </Link>
