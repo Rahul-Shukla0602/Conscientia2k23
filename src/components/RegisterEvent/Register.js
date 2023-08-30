@@ -145,7 +145,10 @@ const Register = () => {
            placeholder='paymentID'
            id="paymentID"
            
-          {...register("paymentID", { required: true })}
+          {...register("paymentID", {  required: "Payment ID is required", minLength: {
+                                        value: 12,
+                                        message: "Invalid payment id"
+                                    } })}
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}

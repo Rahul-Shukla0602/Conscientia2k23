@@ -164,7 +164,7 @@ export const registerTeam = async (data,token)=>{
     if (!response?.data?.success) {
       throw new Error("Could Not HAVE TEAM")
     }
-    toast.success("Registered")
+    toast.success("TEAM Details Updated Successfully")
     // change it if needed
     result = response?.data
   } catch(error){
@@ -186,7 +186,7 @@ export const editTeamDetails = async(data,token)=>{
     if (!response?.data?.success) {
       throw new Error("Could Not Update TEAM Details")
     }
-    toast.success("TEAM Details Updated Successfully")
+    toast.success("Registered")
     result = response?.data
   } catch (error) {
     // console.log("EDIT TEAM API ERROR............", error)
