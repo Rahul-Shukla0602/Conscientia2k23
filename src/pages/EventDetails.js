@@ -14,6 +14,7 @@ const EventDetails = () => {
     const options = [];
     let linkTo = eventData.eventName === 'MIND-SPARK' ?
     'https://docs.google.com/forms/d/e/1FAIpQLSfhAaf1NgZoIRLvdgTPBYraURzEyX4fnFwER0FJ4TMzQuLX1g/viewform' 
+    : eventData.eventName === 'INTRODUCTION TO MATLAB'? 'https://docs.google.com/forms/d/e/1FAIpQLScyRt8Qbk2yij5fn-E7llr6DPRsih7x-kAktEpCgz1rZOcKNA/viewform' 
     : `/event/registerEvent/${eventId}`;
     useEffect(() => {
          (async () => {
@@ -60,7 +61,9 @@ const EventDetails = () => {
                 <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>{
                   eventData.price !== 0 ?<p>PRIZE: {eventData.price} INR</p> :""
                 }</p>
-                <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR</p>
+                <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR
+                {/* { eventId === } */}
+                </p>
             </div>
             <div className=' flex gap-6'>
                <Link to={eventData.BrochureLink} className='flex justify-center items-center text-pink-100'>
