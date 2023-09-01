@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  Team: null,
+  Team1: localStorage.getItem('Team')?JSON.parse(localStorage.getItem('Team')):null,
   editTeam: false,
   paymentLoading: false,
 }
@@ -11,7 +11,7 @@ const teamSlice = createSlice({
   initialState,
   reducers: {
     setTeam: (state, actions) => {
-      state.Team = actions.payload
+      state.Team1 = actions.payload
     },
     setEditTeam: (state, actions) => {
       state.editTeam = actions.payload

@@ -28,7 +28,8 @@ const Register = () => {
   const navigate = useNavigate();
   const {eventId} = useParams();
   const {number} = useSelector((state)=>state.participant)
-  const teamId  = Team?._id || Team?.data?._id;
+  const teamId  = Team?._id;
+  console.log("team id check1",Team?._id)
   console.log(teamId)
   console.log("teams mai check",Team)
 
@@ -45,7 +46,7 @@ const Register = () => {
   // }, [])
 
   const goToEvent = () => {
-    dispatch(resetEventState())
+    // dispatch(resetEventState())
     navigate("/dashboard/my-profile")
     dispatch(setStep(1));
   }
@@ -79,10 +80,27 @@ const Register = () => {
   const handleEventRegister= async (data) => {
   
     const formData = new FormData()
+    console.log(teamId);
+    console.log(data);
     formData.append("TeamId", teamId)
     formData.append("paymentID",data.paymentID)
+    console.log(Team.teamMembers);
+    if(Array.isArray(Team.teamMembers)) {
+      const teamMembersData = Team.teamMembers.map((member) => ({
+          name: member.name,
+          phone: member.phone,
+          email: member.email,
+          aadhar: member.aadhar,
+      }));
+      formData.append("teamMembers", JSON.stringify(teamMembersData));
+    } else {
+        formData.append("teamMembers", "[]")
+    }
+
     setLoading(true)
+    console.log('editTeamDetails',formData);
     const result = await editTeamDetails(formData, token)
+    console.log('edit :',result);
     if (result) {
       goToEvent()
     }

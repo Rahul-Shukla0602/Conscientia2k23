@@ -8,18 +8,17 @@ exports.registerEvent = async (req,res)=>{
         const {name,college,collegeId,teamName,phone,email,aadhar} =  req.body;
         const eventId = req.body.eventId
         const teamMembers = req.body.teamMembers ? req.body.teamMembers : [] ;
-        // const teamMembers = JSON.parse(req.body.teamMembers)|| req.body.teamMembers;
-        // const teamMembers = req.body.teamMembers || [];
-        // // console.log("PARED:",JSON.parse(req.body.teamMembers));
         console.log("TEAM MEMBER in backend: ",teamMembers);
         if(!eventId || !name || !college || !collegeId || !phone
             || !aadhar || !email){
+                console.log("check1")
             return res.status(404).json({
                 success:false,
                 message:"All fields are required"
             })
         }
         const parsedTeamMembers = JSON.parse(teamMembers);
+        console.log("parsed Team Member",parsedTeamMembers);
         const validatedTeamMembers = 
         parsedTeamMembers.map(member => {
             const {
@@ -35,6 +34,7 @@ exports.registerEvent = async (req,res)=>{
                 aadhar: aadhar ? aadhar.trim() : ''
             };
         });
+        console.log("validatedTeamMembers",validatedTeamMembers);
         const ParticipantData = {
             name: name.trim(),
             college: college.trim(),
@@ -49,7 +49,6 @@ exports.registerEvent = async (req,res)=>{
         }
         console.log("data dekhte hai",ParticipantData)
         const ParticipantDetail = await Participant.create(ParticipantData)
-
         await Event.findByIdAndUpdate(
             {_id:eventId},
             {
@@ -76,32 +75,61 @@ exports.registerEvent = async (req,res)=>{
 
 exports.editTeamDetails = async (req,res)=>{
     try{
-        const {TeamId,teamMembers,...updates} = req.body;
-        console.log("DD: ",req.body)
-        // const parsedTeamMembers = JSON.parse(teamMembers || "[]");
-        const parsedTeamMembers = JSON.parse(teamMembers || "[]");;
-        if (!TeamId || !updates) {
+        const {TeamId,name,college,collegeId,teamName,phone,email,aadhar} = req.body;
+        console.log("edited details: ",req.body)
+        const teamMembers = req.body.teamMembers ? req.body.teamMembers : [] ;
+        console.log("teamMembers data after edit",teamMembers);
+        const parsedTeamMembers = JSON.parse(teamMembers);
+        console.log("parsedTeamMembers",parsedTeamMembers);
+        if (!TeamId) {
+            console.log('id and updates')
             return res.status(404).json({
                 success:false,
                 message: "TeamId and updates object are required"
         })}
         const Team = await Participant.findById(TeamId);
-        Team.teamMembers = parsedTeamMembers
+        console.log("Team1",Team);
+        const validatedTeamMembers = 
+        parsedTeamMembers?.map(member => {
+            const {
+                name,
+                phone,
+                email,
+                aadhar
+            } = member;
+            return {
+                name: name ? name: '',
+                phone: phone ? phone : '',
+                email: email ? email: '',
+                aadhar: aadhar ? aadhar : ''
+            };
+        });
+        console.log("validatedTeamMembers",validatedTeamMembers);
+        Team.teamMembers = validatedTeamMembers || Team.teamMembers
+        console.log("Team2",Team);
+        const ParticipantData = {
+            name: name?.trim() || Team.name,
+            college: college?.trim() || Team.college,
+            collegeId: collegeId?.trim() || Team.collegeId,
+            teamName: teamName?.trim() || Team.teamName,
+            teamMembers: validatedTeamMembers || teamMembers,
+            paymentStatus: "NonPaid",
+            phone: phone?.trim() || Team.phone,
+            email: email?.trim() || Team.email,
+            aadhar: aadhar?.trim() || Team.aadhar,
+            paymentID: req.body.paymentID || ''
+        }
+        console.log("data dekhte hai",ParticipantData)
+        const updatedTeam = await Participant.findByIdAndUpdate(
+            {_id:TeamId},
+            ParticipantData,
+            {new:true}
+        )
+        console.log("updatedTeam: ",updatedTeam)
         if (!Team) {
             return res.status(404).json({ success: false, message: "Team not found" });
         }
-        Team.paymentID = req.body.paymentID;
-        await Team.save();
-        const allowedFields = ["name", "college", "collegeId", "teamName", "teamMembers","paymentID",
-        "paymentStatus", "phone", "email", "aadhar"];
-        for (const key in updates) {
-            if (updates.hasOwnProperty(key) && allowedFields.includes(key)) {
-                Team[key] = updates[key]
-            }
-        }
-
-        const updatedTeam = await Team.save();  
-        console.log("u:::",updatedTeam);
+        console.log("")
         res.json({
         success: true,
         message: "Team updated successfully",
@@ -143,3 +171,68 @@ exports.editTeamDetails = async (req,res)=>{
 //     "aadhar": "0123 4567 8901"
 //   }
   
+// exports.registerEvent = async (req,res)=>{
+//     try{
+//         const {name,college,collegeId,teamName,phone,email,aadhar} =  req.body;
+//         const eventId = req.body.eventId
+//         const teamMembers = req.body.teamMembers ? req.body.teamMembers : [] ;
+//         console.log("TEAM MEMBER in backend: ",teamMembers);
+//         if(!eventId || !name || !college || !collegeId || !phone
+//             || !aadhar || !email){
+//             return res.status(404).json({
+//                 success:false,
+//                 message:"All fields are required"
+//             })
+//         }
+//         const validatedTeamMembers = 
+//         teamMembers.map(member => {
+//             const {
+//                 name,
+//                 phone,
+//                 email,
+//                 aadhar
+//             } = member;
+//             return {
+//                 name: name ? name.trim() : '',
+//                 phone: phone ? phone.trim() : '',
+//                 email: email ? email.trim() : '',
+//                 aadhar: aadhar ? aadhar.trim() : ''
+//             };
+//         });
+//         const ParticipantData = {
+//             name: name.trim(),
+//             college: college.trim(),
+//             collegeId: collegeId.trim(),
+//             teamName: teamName ? teamName.trim() : '',
+//             teamMembers: validatedTeamMembers || [],
+//             paymentStatus: "NonPaid",
+//             phone: phone.trim(),
+//             email: email.trim(),
+//             aadhar: aadhar.trim(),
+//             paymentID: ''
+//         }
+//         console.log("data dekhte hai",ParticipantData)
+//         const ParticipantDetail = await Participant.create(ParticipantData)
+//         await Event.findByIdAndUpdate(
+//             {_id:eventId},
+//             {
+//                 $push:{
+//                     TeamDetails:ParticipantDetail._id
+//                 }
+//             },
+//             {new:true}
+//         ).populate({path:"TeamDetails"})
+//         return res.json({
+//             success:true,
+//             message:'Register Created Successfully',
+//             data:ParticipantDetail
+//         })
+
+//     } catch(error){
+//             console.log("problem in Registering event",error)
+//             return res.status(500).json({
+//             success:false,
+//             message:"Failed to add participants in the Event",
+//         });
+//     }
+// }

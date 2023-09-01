@@ -15,7 +15,7 @@ export default function RegistrationForm() {
   const dispatch = useDispatch();
   const {register, handleSubmit,formState: { errors }, setValue,getValues} = useForm();
   const {eventId} = useParams()
-  const { Team, editTeam } = useSelector((state) => state.participant);
+  const {Team,editTeam} = useSelector((state)=>state.participant);
   const [loading, setLoading] = useState(false)
   const {token} = useSelector((state)=>state.auth)
   const {number} = useSelector((state)=>state.participant)
@@ -116,10 +116,11 @@ export default function RegistrationForm() {
 
         setLoading(true)
         const result = await editTeamDetails(formData, token)
+        console.log("result edited",result)
         setLoading(false)
         if (result) {
           dispatch(setStep(2))
-          dispatch(setTeam(result));
+          dispatch(setTeam(result.data));
         }
       }
       else {
@@ -138,7 +139,8 @@ export default function RegistrationForm() {
     formData.append("email", data.email);
     formData.append("aadhar", data.aadhar);
     if(number!==1){
-      if (Array.isArray(data.teamMembers)) {
+      //team member data if member exists
+      if(Array.isArray(data.teamMembers)) {
         const teamMembersData = data.teamMembers.map((member) => ({
             name: member.name,
             phone: member.phone,
@@ -146,7 +148,6 @@ export default function RegistrationForm() {
             aadhar: member.aadhar,
         }));
         formData.append("teamMembers", JSON.stringify(teamMembersData));
-        console.log("FORMAT: ", teamMembersData)
       } else {
           formData.append("teamMembers", "[]")
       }
@@ -154,12 +155,12 @@ export default function RegistrationForm() {
     setLoading(true)
     const res = await registerTeam(formData,token)
       if(res.success){
-        console.log("RESPONE: ",res.data) 
+        console.log("RESPONE: ", res.data)
         dispatch(setStep(2));
-        dispatch(setTeam(res.data)) 
-        console.log("DATA of team: ",Team)
-        // toast.success("Team registered successfully");
-        setEditTeam(true);
+        console.log("DATA of team in frontend1: ",Team)
+        dispatch(setTeam(res.data))
+        console.log("DATA of team in frontend: ",Team)
+        dispatch(setEditTeam(true));
       }else {
         toast.error(res.message || "Failed to register team");
       }
