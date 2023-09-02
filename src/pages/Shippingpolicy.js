@@ -38,7 +38,7 @@ const Shippingpolicy = () => {
         <p>
         You can also order the merch and recieve it at the comfort of your home. We will deliver the orders through
         Indian Post. The user would have to pay a nominal amount of Rs. 100 as shipment charge. You would be recieve
-        the order within a 7-10 days of the order. We would inform the user after the shipment is booked.
+        the order after Conscientia. We would inform the user after the shipment is booked.
         </p>
         <br />
         <h3 className="text-lg font-bold">Shipping Fees</h3>

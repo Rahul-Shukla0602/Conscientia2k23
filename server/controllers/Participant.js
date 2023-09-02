@@ -6,9 +6,11 @@ const Participant = require('../models/Participant')
 exports.registerEvent = async (req,res)=>{
     try{
         const {name,college,collegeId,teamName,phone,email,aadhar} =  req.body;
+        console.log("req ki body : ",req.body)
         const eventId = req.body.eventId
         const teamMembers = req.body.teamMembers ? req.body.teamMembers : [] ;
         console.log("TEAM MEMBER in backend: ",teamMembers);
+        console.log('check1')
         if(!eventId || !name || !college || !collegeId || !phone
             || !aadhar || !email){
                 console.log("check1")
@@ -17,10 +19,16 @@ exports.registerEvent = async (req,res)=>{
                 message:"All fields are required"
             })
         }
-        const parsedTeamMembers = JSON.parse(teamMembers);
+        console.log('check2')
+        const parsedTeamMembers = typeof teamMembers === 'string' && teamMembers.length > 0
+        ? JSON.parse(teamMembers)
+        : [];
+
+        console.log('check4')
         console.log("parsed Team Member",parsedTeamMembers);
+        console.log('check3')
         const validatedTeamMembers = 
-        parsedTeamMembers.map(member => {
+        parsedTeamMembers?.map(member => {
             const {
                 name,
                 phone,
