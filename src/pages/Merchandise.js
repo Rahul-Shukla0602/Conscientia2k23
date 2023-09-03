@@ -60,11 +60,20 @@ export default function Merchandise() {
                             </svg>
                         </span>
                     </div>
+                    {
+                      val.title.split(' ')[2] === 'Polo'?
+                      <Link className='pl-[20px] whitespace-nowrap flex flex-row-reverse items-center gap-[8px] text-pink-100' 
+                        to='https://res.cloudinary.com/dwdwnfcnx/image/upload/v1693673990/polo_size_uevzl4.png'
+                        target='_blank'>Size Guide
+                        <AiOutlineLink/>
+                      </Link>
+                      :
                       <Link className='pl-[20px] whitespace-nowrap flex flex-row-reverse items-center gap-[8px] text-pink-100' 
                         to='https://res.cloudinary.com/dwdwnfcnx/image/upload/v1693330970/size_guide_all_hvz1m4.jpg'
                         target='_blank'>Size Guide
                         <AiOutlineLink/>
                       </Link>
+                    }                  
                     </div>
                   </div>
                   <div className="flex">

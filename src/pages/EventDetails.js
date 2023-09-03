@@ -61,9 +61,13 @@ const EventDetails = () => {
                 <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>{
                   eventData.price !== 0 ?<p>PRIZE: {eventData.price} INR</p> :""
                 }</p>
-                <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR
-                {/* { eventId === } */}
-                </p>
+                {/* <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR</p> */}
+                {
+                  eventId === '64c4ebcfb3e4407fb610c3b4' ? 
+                  <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee + (number-1)*1000} INR</p>
+                  :
+                  <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR</p>
+                }
             </div>
             <div className=' flex gap-6'>
                <Link to={eventData.BrochureLink} className='flex justify-center items-center text-pink-100'>
