@@ -163,10 +163,7 @@ const Register = () => {
            placeholder='paymentID'
            id="paymentID"
            
-          {...register("paymentID", {  required: "Payment ID is required", minLength: {
-                                        value: 12,
-                                        message: "Invalid payment id"
-                                    } })}
+          {...register("paymentID",  {require:true})}
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -174,7 +171,7 @@ const Register = () => {
           />
           {errors.paymentID && (
           <span className="ml-2 text-xs tracking-wide text-pink-200">
-                    payment is required
+                    payment-id is required
           </span>
           )}
         </label>
