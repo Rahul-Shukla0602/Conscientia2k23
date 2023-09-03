@@ -63,7 +63,7 @@ const EventDetails = () => {
                 }</p>
                 {/* <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR</p> */}
                 {
-                  eventId === '64c4ebcfb3e4407fb610c3b4' ? 
+                  eventId === '64c4ebcfb3e4407fb610c3b4' && number ? 
                   <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee + (number-1)*1000} INR</p>
                   :
                   <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR</p>
