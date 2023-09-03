@@ -14,7 +14,7 @@ const EventDetails = () => {
     const options = [];
     let linkTo = eventData.eventName === 'MIND-SPARK' ?
     'https://docs.google.com/forms/d/e/1FAIpQLSfhAaf1NgZoIRLvdgTPBYraURzEyX4fnFwER0FJ4TMzQuLX1g/viewform' 
-    : eventData.eventName === 'INTRODUCTION TO MATLAB'? 'https://docs.google.com/forms/d/e/1FAIpQLScyRt8Qbk2yij5fn-E7llr6DPRsih7x-kAktEpCgz1rZOcKNA/viewform' 
+    : eventData.eventName === 'INTRODUCTION TO MATLAB'? '' 
     : `/event/registerEvent/${eventId}`;
     useEffect(() => {
          (async () => {
@@ -112,15 +112,25 @@ const EventDetails = () => {
                 eventId === "64c2a5a52f7a7a75db4c0d9b" ? (
                 <div class='flex flex-col md:flex-row text-sm gap-2'>
                   <span class='text-sm'>UPDATE:</span>
+                 
+                  
                   <p class='text-sm flex-shrink-0'>
                     Registration is valid to 15 Aug and result will be declared on 15th-20th Aug.
                   </p>
                 </div>
+                
 
                 ):''
             }
             </div>
-            <p className=' text-richblack-5'><span className=' text-pink-200'>*</span> The last date of registration is September 15, 2023.</p>
+            {
+              eventId === '64f04d03de04968701d73996'? 
+              <p className=' text-richblack-5'><span className='text-pink-200'>*</span> Registrations are closed.</p>
+              :
+              <p className=' text-richblack-5'><span className=' text-pink-200'>*</span>The last date of registration is September 15, 2023.</p>
+            }
+            
+
             <br></br>
             
             <Link
