@@ -20,6 +20,27 @@ export default function RegistrationForm() {
   const {token} = useSelector((state)=>state.auth)
   const {number} = useSelector((state)=>state.participant)
 
+  // const CA_ids = [''
+  // ,'CA23B101','CA23B102','CA23B103','CA23B104','CA23B105','CA23B106','CA23B107','CA23B108','CA23B109'
+  // ,'CA23B110','CA23B111','CA23B112','CA23B113','CA23B114','CA23B115','CA23B116','CA23B117','CA23B118'
+  // ,'CA23B119','CA23B120','CA23B121','CA23B122','CA23B123','CA23B124','CA23B125','CA23B126','CA23B127'
+  // ,'CA23B128','CA23B129','CA23B130','CA23B131','CA23B132','CA23B133','CA23B134','CA23B135']
+
+  // const MatchID = () => {
+  //   const currentValues = getValues();
+  //   const referralCode = currentValues.ReferralCode || "";
+  //   if (!CA_ids.includes(referralCode)) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+  
+
+  // useEffect(()=>{
+  //   MatchID()
+  // },[])
+  
+
   useEffect(()=>{
     if(editTeam){
        setValue("name", Team.name)
@@ -29,8 +50,9 @@ export default function RegistrationForm() {
        setValue("phone", Team.phone)
        setValue("email", Team.email)
        setValue("aadhar", Team.aadhar)
-       if(Array.isArray(Team.teamMembers)){
-        Team.teamMembers.forEach((member, index) => {
+       setValue("ReferralCode", Team.ReferralCode)
+       if(Array.isArray(Team?.teamMembers) ){
+        Team?.teamMembers?.forEach((member, index) => {
           setValue(`teamMembers[${index}].name`, member.name);
           setValue(`teamMembers[${index}].college`, member.college);
           setValue(`teamMembers[${index}].phone`, member.phone);
@@ -57,7 +79,8 @@ export default function RegistrationForm() {
         currentValues.teamMembers !== Team.teamMembers ||
         currentValues.phone !== Team.phone ||
         currentValues.email !== Team.email ||
-        currentValues.aadhar !== Team.aadhar
+        currentValues.aadhar !== Team.aadhar ||
+        currentValues.ReferralCode !== Team.ReferralCode
     )
         return true
     }
@@ -99,9 +122,13 @@ export default function RegistrationForm() {
         if(currentValues.aadhar !== Team.aadhar){
           formData.append("aadhar", data.aadhar)
         }
+        if(currentValues.ReferralCode !== Team.ReferralCode){
+          formData.append("ReferralCode", data.ReferralCode)
+        }
         if(Team?.teamMembers){
-          if(Array.isArray(Team.teamMembers)){
-              const teamMembersData = data.teamMembers.map((member) => ({
+          if(Array.isArray(Team.teamMembers) && number>1){
+            console.log("check43")
+              const teamMembersData = data.teamMembers?.map((member) => ({
                 name: member.name,
                 phone: member.phone,
                 email: member.email,
@@ -110,8 +137,10 @@ export default function RegistrationForm() {
               console.log("TEAM MEMBERL: ",teamMembersData)
               formData.append("teamMembers", JSON.stringify(teamMembersData));
           }else{
+            console.log("check44")
             formData.append("teamMembers", "[]");
           }
+          console.log("check45")
         }
 
         setLoading(true)
@@ -138,6 +167,7 @@ export default function RegistrationForm() {
     formData.append("phone", data.phone);
     formData.append("email", data.email);
     formData.append("aadhar", data.aadhar);
+    formData.append("ReferralCode", data.ReferralCode);
     if(number!==1){
       //team member data if member exists
       if(Array.isArray(data.teamMembers)) {
@@ -422,6 +452,30 @@ export default function RegistrationForm() {
           ))}
         </div>
       </div>)}
+
+
+
+      {/* start reffearal code frontend */}
+
+      <div className="mb-4">
+        <label htmlFor="ReferralCode" className="block mb-2 font-medium">
+          Referral Code <span className=""></span>
+        </label>
+        <input
+          // onChangeCapture={MatchID}
+          {...register("ReferralCode")}
+          type="text"
+          id="ReferralCode"
+          placeholder="Referral Code"
+          style={{
+                      boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+          }}
+          className=" w-full text-richblack-5 px-4 py-2 border border-richblack-600 rounded-md bg-richblack-700 focus:outline-none focus:ring focus:ring-blue-500"
+        />
+      </div>
+
+      {/* end reffearal code frontend */}
+
 
       {/**/}
             <div className="flex justify-end items-center  gap-x-2">

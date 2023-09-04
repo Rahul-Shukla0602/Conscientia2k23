@@ -5,28 +5,24 @@ const Participant = require('../models/Participant')
 
 exports.registerEvent = async (req,res)=>{
     try{
-        const {name,college,collegeId,teamName,phone,email,aadhar} =  req.body;
+        const {name,college,collegeId,teamName,phone,email,aadhar, ReferralCode} =  req.body;
         console.log("req ki body : ",req.body)
         const eventId = req.body.eventId
         const teamMembers = req.body.teamMembers ? req.body.teamMembers : [] ;
         console.log("TEAM MEMBER in backend: ",teamMembers);
-        console.log('check1')
-        if(!eventId || !name || !college || !collegeId || !phone
-            || !aadhar || !email){
-                console.log("check1")
+
+        if(!eventId || !name || !college || !collegeId || !phone || !aadhar || !email){
             return res.status(404).json({
                 success:false,
                 message:"All fields are required"
             })
         }
-        console.log('check2')
+
         const parsedTeamMembers = typeof teamMembers === 'string' && teamMembers.length > 0
         ? JSON.parse(teamMembers)
         : [];
-
-        console.log('check4')
         console.log("parsed Team Member",parsedTeamMembers);
-        console.log('check3')
+
         const validatedTeamMembers = 
         parsedTeamMembers?.map(member => {
             const {
@@ -53,7 +49,8 @@ exports.registerEvent = async (req,res)=>{
             phone: phone.trim(),
             email: email.trim(),
             aadhar: aadhar.trim(),
-            paymentID: ''
+            paymentID: '',
+            ReferralCode:  ReferralCode ?  ReferralCode.trim() : ''
         }
         console.log("data dekhte hai",ParticipantData)
         const ParticipantDetail = await Participant.create(ParticipantData)
@@ -83,7 +80,7 @@ exports.registerEvent = async (req,res)=>{
 
 exports.editTeamDetails = async (req,res)=>{
     try{
-        const {TeamId,name,college,collegeId,teamName,phone,email,aadhar} = req.body;
+        const {TeamId,name,college,collegeId,teamName,phone,email,aadhar,ReferralCode} = req.body;
         console.log("edited details: ",req.body)
         const teamMembers = req.body.teamMembers ? req.body.teamMembers : [] ;
         console.log("teamMembers data after edit",teamMembers);
@@ -125,7 +122,8 @@ exports.editTeamDetails = async (req,res)=>{
             phone: phone?.trim() || Team.phone,
             email: email?.trim() || Team.email,
             aadhar: aadhar?.trim() || Team.aadhar,
-            paymentID: req.body.paymentID || ''
+            paymentID: req.body.paymentID || '',
+            ReferralCode:  ReferralCode ?  ReferralCode : Team.ReferralCode
         }
         console.log("data dekhte hai",ParticipantData)
         const updatedTeam = await Participant.findByIdAndUpdate(

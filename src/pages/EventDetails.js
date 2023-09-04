@@ -5,6 +5,7 @@ import { fetchEventDetails } from '../services/operations/eventAPI';
 import { AiOutlineLink } from 'react-icons/ai';
 import {setParticipant} from '../slices/participantSlice';
 import { setEvent } from '../slices/eventSlice';
+import { setBot } from '../slices/Bots';
 
 const EventDetails = () => {
     const {event} = useSelector((state)=>state.event);
@@ -12,10 +13,13 @@ const EventDetails = () => {
     const {eventId} = useParams();
     const [eventData,seteventData] = useState('');
     const options = [];
+    const Bots = [];
+
     let linkTo = eventData.eventName === 'MIND-SPARK' ?
     'https://docs.google.com/forms/d/e/1FAIpQLSfhAaf1NgZoIRLvdgTPBYraURzEyX4fnFwER0FJ4TMzQuLX1g/viewform' 
     : eventData.eventName === 'INTRODUCTION TO MATLAB'? '' 
     : `/event/registerEvent/${eventId}`;
+
     useEffect(() => {
          (async () => {
           try {
@@ -34,15 +38,25 @@ const EventDetails = () => {
       for(let i=0;i<eventData.maxParticipant;i++){
         options.push(i+1);
       }
+      for(let i=0;i<3;i++){
+        Bots.push(i+1);
+      }
       const {number} = useSelector((state)=>state.participant);
+      const {botnumber} = useSelector((state)=>state.bot);
       const handleChange = (e) => {
         // setNum(parseInt(e.target.value, 10));
         dispatch(setParticipant(parseInt(e.target.value, 10)));// Convert the selected value to an integer
         console.log("Selected Number of Participants: ", number);
       };
+      const handleChangeBot = (e) => {
+        dispatch(setBot(parseInt(e.target.value, 10)));// Convert the selected value to an integer
+        console.log("Selected Number of Bots: ", botnumber);
+      };
+
       useEffect(() => {
         console.log("Selected Number of Participants: ", number);
-      }, [number]);
+        console.log("Selected Number of Bots: ", botnumber);
+      }, [number,botnumber]);
   return (
     <div className=' bg-richblack-800 p-10 rounded-2xl text-richblack-200 w-[340px] lg:w-[600px] mx-auto transform translate-y-[120px]'>
         <div className=' flex flex-col gap-2'>
@@ -63,6 +77,10 @@ const EventDetails = () => {
                 }</p>
                 {/* <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee} INR</p> */}
                 {
+                  eventId === '64d7c8c2b274fa83f6096657'? 
+                  <p className=' text-richblack-5'>REGISTRATION FEE: { event.fee + (botnumber-1)*1000 }</p>
+                  :
+                  
                   eventId === '64c4ebcfb3e4407fb610c3b4' && number ? 
                   <p className=' text-richblack-5  whitespace-nowrap text-xs lg:text-base'>REGISTRATION FEE: {eventData.fee + (number-1)*1000} INR</p>
                   :
@@ -108,6 +126,24 @@ const EventDetails = () => {
               }
             </div>
             <div>
+
+            {/* start for Battle of Bots */}
+            <div className=' text-richblack-5'>
+              {
+                eventId === '64d7c8c2b274fa83f6096657' &&(
+                  <div className='flex gap-3'>
+                    <p className=' text-sm lg:text-lg'>Select Number Of Bots: </p>
+                  <select  className=' text-richblack-900 border-2 border-richblack-900 rounded-lg'
+                    onChange={handleChangeBot}
+                    value={botnumber} >
+                      { Bots.map((option,index)=>{return(<option key={index}>{option}</option>)})}
+                  </select>
+                  </div>
+                )
+              }
+            </div>
+             {/* end for Battle of Bots */}
+
             {
                 eventId === "64c2a5a52f7a7a75db4c0d9b" ? (
                 <div class='flex flex-col md:flex-row text-sm gap-2'>
@@ -123,6 +159,7 @@ const EventDetails = () => {
                 ):''
             }
             </div>
+
             {
               eventId === '64f04d03de04968701d73996'? 
               <p className=' text-richblack-5'><span className='text-pink-200'>*</span> Registrations are closed.</p>

@@ -6,6 +6,7 @@ import cartReducer from '../slices/cartSlice'
 import participantReducer from '../slices/participantSlice'
 import teamReducer from '../slices/teamSlice'
 import accomodationReducer from '../slices/accomodationSlice'
+import botReducer from '../slices/Bots'
 const rootReducer = combineReducers({
     auth: authReducer,
     profile : profileReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     cart: cartReducer,
     participant:participantReducer,
     team:teamReducer,
-    accomodation: accomodationReducer
+    accomodation: accomodationReducer,
+    bot:botReducer
 })
 export default rootReducer;

@@ -13,8 +13,10 @@ import { editTeamDetails } from '../../services/operations/eventAPI'
 import pay_qr from '../../assets/payment_qr.jpeg'
 
 
+
 const Register = () => {
   const {event} = useSelector((state)=>state.event);
+  const {botnumber} = useSelector((state)=>state.bot);
   const { register, handleSubmit,
   // setValue, 
   // getValues,
@@ -153,21 +155,27 @@ const Register = () => {
         <p className=' text-richblack-5 text-2xl mt-[20px] text-center'><span>UPI ID:{" "}</span>9978944804@paytm</p>
         <p className=' text-richblack-25 mt-[10px]  text-xl '>
           Pay {" "} 
-          <span className=' text-yellow-5'>{ eventId==='64c4ebcfb3e4407fb610c3b4' && number ? (event.fee + (number-1)*1000): event.fee }</span>
+          {
+            eventId === '64d7c8c2b274fa83f6096657'?
+            <span className=' text-yellow-5'>{ event.fee + (botnumber-1)*1000 }</span>
+            :
+            <span className=' text-yellow-5'>{eventId==='64c4ebcfb3e4407fb610c3b4' && number ? (event.fee + (number-1)*1000): event.fee }</span>
+          }
+          {/* <span className=' text-yellow-5'>{eventId==='64c4ebcfb3e4407fb610c3b4' && number ? (event.fee + (number-1)*1000): event.fee }</span> */}
           {" "}INR in given QR code.
         </p>
 
         <label className=' form-style text-richblack-5'>
           <p className=' text-richblack-25 mt-[10px]  text-xl'>Payment ID: </p>
           <input type='text'
-           placeholder='paymentID'
+           placeholder='Transaction ID'
            id="paymentID"
            
           {...register("paymentID",  {require:true})}
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
-          className="w-full mt-3 py-2 text-richblack-5 border border-richblack-600 rounded-md bg-richblack-700 focus:outline-none focus:ring focus:ring-blue-500"
+          className="placeholder:pl-[10px] w-full mt-3 py-2 text-richblack-5 border border-richblack-600 rounded-md bg-richblack-700 focus:outline-none focus:ring focus:ring-blue-500"
           />
           {errors.paymentID && (
           <span className="ml-2 text-xs tracking-wide text-pink-200">
