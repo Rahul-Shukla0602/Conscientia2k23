@@ -46,7 +46,7 @@ const Footer = () => {
           <div className="flex flex-col mt-4">
             <p className="text-lg font-semibold">For any queries, contact us at:</p>
             <Mailto email="conscientiateamiist@gmail.com" className="text-gray-300 hover:text-white" />
-            <p>Phone Number: 9083722796/7281015320</p>
+            <p>Phone Number: 9083722796/9693137276</p>
           </div>
         </div>
 
