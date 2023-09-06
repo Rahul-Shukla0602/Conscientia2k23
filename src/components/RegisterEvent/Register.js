@@ -10,7 +10,7 @@ import {
 import {setLoading} from '../../slices/profileSlice'
 import { editTeamDetails } from '../../services/operations/eventAPI'
 // import { buyEvent } from '../../services/operations/userFeatureAPI'
-import pay_qr from '../../assets/payment_qr.jpeg'
+import pay_qr from '../../assets/payment_qr1.jpeg'
 
 
 
@@ -151,8 +151,8 @@ const Register = () => {
 
         {/*  */}
 
-        <img src={pay_qr} alt='QR' className=' rounded-lg'/>
-        <p className=' text-richblack-5 text-2xl mt-[20px] text-center'><span>UPI ID:{" "}</span>9978944804@paytm</p>
+        <img src={pay_qr} alt='QR' className='w-[440px] h-[530px] rounded-lg'/>
+        <p className=' text-richblack-5 text-2xl mt-[20px] text-center'><span>UPI ID:{" "}</span>aaravvvashi25@oksbi</p>
         <p className=' text-richblack-25 mt-[10px]  text-xl '>
           Pay {" "} 
           {
