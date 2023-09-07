@@ -314,7 +314,7 @@ export default function Accomodation() {
     return (
         <div>
             <section className="bg-slate-900 px-3 py-[270px] lg:py-32 flex flex-col items-center transform -translate-y-[140px] lg:translate-y-[40px] ">
-                <span className="text-white text-center font-bold text-4xl">ACCOMODATION</span>
+                <span className="text-white text-center font-bold text-4xl">ACCOMMODATION</span>
                 <div class="text-white w-4/5 sm:w-auto flex mx-auto mt-10 mb-10">
                    
                     <p id='accostep1' class="bg-blue-200 sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium bg-gray-100 inline-flex items-center leading-none border-indigo-500 text-indigo-500 tracking-wider rounded-t">

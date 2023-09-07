@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 // import IconBtn from '../common/IconBtn'
 import { useDispatch, useSelector } from 'react-redux'
 import {setStep} from '../../slices/eventSlice'
@@ -15,6 +15,7 @@ import pay_qr from '../../assets/payment_qr1.jpeg'
 
 
 const Register = () => {
+  const [registrationError, setRegistrationError] = useState(null);
   const {event} = useSelector((state)=>state.event);
   const {botnumber} = useSelector((state)=>state.bot);
   const { register, handleSubmit,
@@ -79,41 +80,80 @@ const Register = () => {
   //      handleEventRegister();
   //   }
   // }
-  const handleEventRegister= async (data) => {
+  // const handleEventRegister= async (data) => {
   
-    const formData = new FormData()
-    console.log(teamId);
-    console.log(data);
-    formData.append("TeamId", teamId)
-    formData.append("paymentID",data.paymentID)
-    console.log(Team.teamMembers);
-    if(Array.isArray(Team.teamMembers)) {
-      const teamMembersData = Team.teamMembers.map((member) => ({
-          name: member.name,
-          phone: member.phone,
-          email: member.email,
-          aadhar: member.aadhar,
-      }));
-      formData.append("teamMembers", JSON.stringify(teamMembersData));
-    } else {
-        formData.append("teamMembers", "[]")
-    }
+  //   const formData = new FormData()
+  //   console.log(teamId);
+  //   console.log(data);
+  //   formData.append("TeamId", teamId)
+  //   formData.append("paymentID",data.paymentID)
+  //   console.log(Team.teamMembers);
+  //   if(Array.isArray(Team.teamMembers)) {
+  //     const teamMembersData = Team.teamMembers.map((member) => ({
+  //         name: member.name,
+  //         phone: member.phone,
+  //         email: member.email,
+  //         aadhar: member.aadhar,
+  //     }));
+  //     formData.append("teamMembers", JSON.stringify(teamMembersData));
+  //   } else {
+  //       formData.append("teamMembers", "[]")
+  //   }
 
-    setLoading(true)
-    console.log('editTeamDetails',formData);
-    const result = await editTeamDetails(formData, token)
-    console.log('edit :',result);
-    if (result) {
-      goToEvent()
+  //   setLoading(true)
+  //   console.log('editTeamDetails',formData);
+  //   const result = await editTeamDetails(formData, token)
+  //   console.log('edit :',result);
+  //   if (result) {
+  //     goToEvent()
+  //   }
+  //   setLoading(false)
+  // }
+  // const onSubmit = (data)=>{
+  //   if(token){
+  //      handleEventRegister(data);
+  //   }
+  //   dispatch(resetEventState())
+  // }
+  const onSubmit = async (data) => {
+    if (token) {
+      try {
+        setLoading(true);
+        const formData = new FormData();
+        formData.append("TeamId", teamId);
+        formData.append("paymentID", data.paymentID);
+        
+        if (Array.isArray(Team.teamMembers)) {
+          const teamMembersData = Team.teamMembers.map((member) => ({
+            name: member.name,
+            phone: member.phone,
+            email: member.email,
+            aadhar: member.aadhar,
+          }));
+          formData.append("teamMembers", JSON.stringify(teamMembersData));
+        } else {
+          formData.append("teamMembers", "[]");
+        }
+
+        const result = await editTeamDetails(formData, token);
+
+        if (result) {
+          goToEvent();
+        } else {
+          // Handle registration error here and show an error message to the user
+          setRegistrationError("Registration failed. Please try again."); // Set the error message
+        }
+      } catch (error) {
+        // Handle unexpected errors here and show an error message to the user
+        console.error("Error during registration:", error);
+        setRegistrationError("An unexpected error occurred. Please try again later."); // Set the error message
+      } finally {
+        setLoading(false);
+      }
     }
-    setLoading(false)
-  }
-  const onSubmit = (data)=>{
-    if(token){
-       handleEventRegister(data);
-    }
-    dispatch(resetEventState())
-  }
+    dispatch(resetEventState());
+  };
+
   return (
     <>
     <div className="rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-[24px]">
@@ -165,13 +205,18 @@ const Register = () => {
           {" "}INR in given QR code.
         </p>
 
-        <label className=' form-style text-richblack-5'>
+        <label htmlFor='paymentID' className=' form-style text-richblack-5'>
           <p className=' text-richblack-25 mt-[10px]  text-xl'>Payment ID: </p>
           <input type='text'
            placeholder='Transaction ID'
            id="paymentID"
            
-          {...register("paymentID",  {require:true})}
+          {...register("paymentID",  {
+            required: "payment Id is required", minLength: {
+                                        value: 8,
+                                        message: "Invalid payment id"
+                                      }
+          })}
           style={{
                       boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -183,6 +228,9 @@ const Register = () => {
           </span>
           )}
         </label>
+        {registrationError && (
+            <p className="text-red-500">{registrationError}</p>
+        )} 
         <div className=' mt-[20px]'>
           <p className=' text-richblack-5 text-sm lg:text-lg'>Make sure Your payment ID should be correct </p>
           <p className=' text-richblack-5 text-sm lg:text-lg'>otherwise we will cancel your registeration.</p>
@@ -190,20 +238,18 @@ const Register = () => {
 
         <div className="ml-auto flex max-w-max items-center gap-x-4 mt-[10px]">
           <button
-          onClick={goBack}
+            onClick={goBack}
             disabled={loading}
-            type='button'
+            type= 'submit'
             className="flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900"
           >Back
           </button>
           <button
+          type= 'submit'
           className="flex cursor-pointer items-center gap-x-2 rounded-md bg-yellow-200 py-[8px] px-[20px] font-semibold text-richblack-900"
-          >Register</button>
+          >Register
+          </button>
         </div>
-
-
-        {/*  */}
-
       </form>
 
     </div>
