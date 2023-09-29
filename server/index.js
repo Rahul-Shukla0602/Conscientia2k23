@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"https://www.conscientia.co.in",
+		origin:"https://conscientia2k23.vercel.app",
 		// origin:"http://localhost:3000",
 		credentials:true,
 	})
